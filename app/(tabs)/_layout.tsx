@@ -1,8 +1,11 @@
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { Tabs } from "expo-router";
+import { useContext } from "react";
+import CurrentUserContext from "app/context/UserContext";
 
 export default function TabsLayout() {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <Tabs>
       <Tabs.Screen
@@ -24,10 +27,8 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="User"
         options={{
-          title: "User",
-          tabBarIcon: () => (
-            <AntDesign name="user" size={24} color="black" />
-          ),
+          title: currentUser.username,
+          tabBarIcon: () => <AntDesign name="user" size={24} color="black" />,
         }}
       />
     </Tabs>

@@ -1,9 +1,9 @@
 import { Stack } from "expo-router/stack";
 import CurrentUserContext from "./context/UserContext";
-import { useState, createContext } from "react";
+import { useState } from "react";
 
 export default function RootLayout() {
-  const [currentUser, setCurrentUser] = useState<UserType>({
+  const [currentUser, setCurrentUser] = useState({
     username: "freezypop",
     user_id: 1,
     bio: "I like to sit in the fridge making sick burns about the maternal figure in your life.",
