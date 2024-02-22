@@ -1,10 +1,13 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import { useContext } from "react";
+import CurrentUserContext from "app/context/UserContext";
 
 export default function User() {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <View>
-      <Text>User Page</Text>
+      <Text>Name: {currentUser.username}</Text>
     </View>
-  )
+  );
 }
