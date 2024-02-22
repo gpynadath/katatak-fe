@@ -1,16 +1,20 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import KataCard from "./KataCard";
-import axios from "axios";
+
+import { getAllKatas } from "app/api";
 
 export default function KataList() {
   const [kataData, setKataData] = useState([]);
 
   useEffect(() => {
-    axios.get("https://katatak.onrender.com/api/katas").then((data) => {
+    const fetchData = async () => {
+      const data = await getAllKatas();
       setKataData(data.data.katas);
-    }, []);
-  });
+    };
+    fetchData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text>KataList</Text>

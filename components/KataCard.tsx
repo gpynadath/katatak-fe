@@ -1,15 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Image, ScrollView } from "react-native";
+import { View, StyleSheet, Image, ScrollView, Button } from "react-native";
 import { Text, Card, Icon } from "@rneui/themed";
 
 export default function KataCard({ kataData }) {
   return (
     <ScrollView>
-      {kataData.map((kata:object) => {
+      {kataData.map((kata: object) => {
         return (
           <Card>
             <View style={styles.user}>
               <Text style={styles.name}>{kata.kata_name}</Text>
+              <Text style={styles.name}>{kata.description}</Text>
+              <Text style={styles.name}>{kata.difficulty}</Text>
+              <Button title="Go to Kata" />
             </View>
           </Card>
         );
@@ -22,20 +25,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  fonts: {
-    marginBottom: 8,
+  button: {
+    height: 5,
   },
   user: {
-    flexDirection: "row",
     marginBottom: 6,
   },
-  image: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
-  },
   name: {
-    fontSize: 16,
+    fontSize: 10,
     marginTop: 5,
   },
 });
