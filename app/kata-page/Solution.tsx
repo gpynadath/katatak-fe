@@ -1,9 +1,14 @@
 import CodeInputEditor from "./CodeInputEditor";
 import Output from "./Output";
 import { View, Text, Button } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-export default function Solution({ kata_id, setComplete } : { kata_id: number, setComplete: any }) {
+interface Solution {
+    kata_id: number,
+    setComplete: Dispatch<SetStateAction<boolean>>
+}
+
+export default function Solution({ kata_id, setComplete } : Solution) {
     const [ input, setInput ] = useState("Default");
 
     return (
