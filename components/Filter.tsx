@@ -29,6 +29,7 @@ export default function Filter({
   useEffect(() => {
     const fetchTopics = async () => {
       const data = await getTopics();
+      data.push({ topic_name: "All Topics..." });
       setTopicsData(data);
     };
     fetchTopics();

@@ -4,13 +4,29 @@ import KataCard from "./KataCard";
 
 import { getAllKatas } from "app/api";
 
-export default function KataList({ topicsValue, orderValue }) {
-  const [kataData, setKataData] = useState([]);
+type KataListProps = {
+  topicsValue: string;
+  orderValue: string;
+};
+type kataObj = {
+  kata_id: number;
+  kata_name: string;
+  description: string;
+  difficulty: string;
+};
+
+export default function KataList({ topicsValue, orderValue }: KataListProps) {
+  const [kataData, setKataData] = useState<kataObj[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllKatas(topicsValue, orderValue);
-      setKataData(data.data.katas);
+      if (topicsValue === "All Topics...") {
+        const data = await getAllKatas("", orderValue);
+        setKataData(data.data.katas);
+      } else {
+        const data = await getAllKatas(topicsValue, orderValue);
+        setKataData(data.data.katas);
+      }
     };
     fetchData();
   }, [topicsValue, orderValue]);

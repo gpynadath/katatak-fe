@@ -4,14 +4,22 @@ import { Text, Card } from "@rneui/themed";
 import { ActiveKataContext } from "app/context/ActiveKata";
 import { router } from "expo-router";
 
-export default function KataCard({ kataData }) {
+type kataObj = {
+  kata_id: number;
+  kata_name: string;
+  description: string;
+  difficulty: string;
+};
+
+export default function KataCard({ kataData }: { kataData: kataObj[] }) {
   const { activeKata, setActiveKata } = useContext(ActiveKataContext);
   const onPressFunction = (id: number) => {
     setActiveKata(id);
   };
+
   return (
     <ScrollView>
-      {kataData.map((kata: object) => {
+      {kataData.map((kata: kataObj) => {
         return (
           <Card key={kata.kata_id}>
             <View style={styles.user}>
