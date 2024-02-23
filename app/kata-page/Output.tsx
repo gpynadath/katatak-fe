@@ -41,11 +41,12 @@ export default function Output({
     <>
       <Text>
         {output.success
-          ? "SUCCESS\n" +
-            output.test_results +
-            "\nLogs (remember, any console.logs will log for each test..):\n" +
+          ? "SUCCESS\n" + output.test_results
+          : "FAIL\n" + output.test_results}
+        {output.logs
+          ? "\nLogs (remember, any console.logs will log for each test..):\n" +
             output.logs
-          : "FAIL\n" + output.test_results + "\nLogs:\n" + output.logs}
+          : null}
       </Text>
     </>
   );
