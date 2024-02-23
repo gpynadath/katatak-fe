@@ -1,21 +1,12 @@
 import React, { useContext } from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  Button,
-  Pressable,
-  Linking,
-} from "react-native";
-import { Text, Card, Icon } from "@rneui/themed";
+import { View, StyleSheet, ScrollView, Pressable } from "react-native";
+import { Text, Card } from "@rneui/themed";
 import { ActiveKataContext } from "app/context/ActiveKata";
 import { router } from "expo-router";
 
 export default function KataCard({ kataData }) {
   const { activeKata, setActiveKata } = useContext(ActiveKataContext);
   const onPressFunction = (id: number) => {
-    console.log(id);
     setActiveKata(id);
   };
   return (
