@@ -1,4 +1,5 @@
 import { Stack } from "expo-router/stack";
+import { ActiveKataProvider } from "./context/ActiveKata";
 import CurrentUserContext from "./context/UserContext";
 import { useState } from "react";
 
@@ -12,9 +13,11 @@ export default function RootLayout() {
   });
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
+      <ActiveKataProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </ActiveKataProvider>
     </CurrentUserContext.Provider>
   );
 }
