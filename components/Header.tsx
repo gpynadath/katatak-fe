@@ -4,13 +4,20 @@ import FilterToggleButton from "./FilterToggleButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Filter from "./Filter";
 
+type HeaderProps = {
+  topicsValue: string;
+  setTopicsValue: React.Dispatch<React.SetStateAction<string>>;
+  orderValue: string;
+  setOrderValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
 export default function Header({
   topicsValue,
   setTopicsValue,
   orderValue,
   setOrderValue,
-}) {
-  const [isEnabled, setIsEnabled] = useState(false);
+}: HeaderProps) {
+  const [isEnabled, setIsEnabled] = useState<boolean>(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={styles.container}>
