@@ -4,15 +4,18 @@ import { Dropdown } from "react-native-element-dropdown";
 import { getTopics } from "app/api";
 
 const orderByData = [
-  { label: "Easy", value: "easy" },
+  { label: "Easy", value: "easiest" },
   { label: "Medium", value: "medium" },
-  { label: "Hard", value: "hard" },
+  { label: "Hard", value: "hardest" },
 ];
 
-export default function Filter() {
+export default function Filter({
+  topicsValue,
+  setTopicsValue,
+  orderValue,
+  setOrderValue,
+}) {
   const [topicsData, setTopicsData] = useState([]);
-  const [topicsValue, setTopicsValue] = useState("null");
-  const [orderValue, setOrderValue] = useState("null");
 
   useEffect(() => {
     const fetchTopics = async () => {

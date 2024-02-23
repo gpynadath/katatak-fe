@@ -4,7 +4,12 @@ import FilterToggleButton from "./FilterToggleButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Filter from "./Filter";
 
-export default function Header() {
+export default function Header({
+  topicsValue,
+  setTopicsValue,
+  orderValue,
+  setOrderValue,
+}) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
@@ -15,7 +20,14 @@ export default function Header() {
         </Text>
         <FilterToggleButton isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
       </View>
-      {isEnabled && <Filter />}
+      {isEnabled && (
+        <Filter
+          topicsValue={topicsValue}
+          setTopicsValue={setTopicsValue}
+          orderValue={orderValue}
+          setOrderValue={setOrderValue}
+        />
+      )}
     </View>
   );
 }

@@ -23,13 +23,14 @@ export async function postKata(kata_id: number, input: string) {
   return results;
 }
 
-export async function getAllKatas() {
-  const data = await axios.get("https://katatak.onrender.com/api/katas");
+export async function getAllKatas(topic:string, order_by:string) {
+  const data = await axios.get(
+    `https://katatak.onrender.com/api/katas?topic=${topic}&order_by=${order_by}`
+  );
   return data;
 }
 
-export async function getTopics(){
-  const data=await axios.get("https://katatak.onrender.com/api/topics")  
-  return data.data.topics
+export async function getTopics() {
+  const data = await axios.get("https://katatak.onrender.com/api/topics");
+  return data.data.topics;
 }
-

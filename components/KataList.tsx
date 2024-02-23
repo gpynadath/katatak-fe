@@ -4,20 +4,19 @@ import KataCard from "./KataCard";
 
 import { getAllKatas } from "app/api";
 
-export default function KataList() {
+export default function KataList({ topicsValue, orderValue }) {
   const [kataData, setKataData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllKatas();
+      const data = await getAllKatas(topicsValue, orderValue);
       setKataData(data.data.katas);
     };
     fetchData();
-  }, []);
+  }, [topicsValue, orderValue]);
 
   return (
     <View style={styles.container}>
-      <Text>KataList</Text>
       <KataCard kataData={kataData} />
     </View>
   );
