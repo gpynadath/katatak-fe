@@ -4,26 +4,37 @@ import { Dropdown } from "react-native-element-dropdown";
 import { getTopics } from "app/api";
 
 const orderByData = [
-  { label: "Easy", value: "easiest" },
-  { label: "Medium", value: "medium" },
-  { label: "Hard", value: "hardest" },
+  { label: "Easiest First", value: "easiest" },
+  { label: "Hardest First", value: "hardest" },
 ];
+
+type FilterProps = {
+  topicsValue: string;
+  setTopicsValue: React.Dispatch<React.SetStateAction<string>>;
+  orderValue: string;
+  setOrderValue: React.Dispatch<React.SetStateAction<string>>;
+};
 
 export default function Filter({
   topicsValue,
   setTopicsValue,
   orderValue,
   setOrderValue,
-}) {
-  const [topicsData, setTopicsData] = useState([]);
+}: FilterProps) {
+  type itemObj = {
+    topic_name: string;
+  };
 
+  const [topicsData, setTopicsData] = useState<itemObj[]>([]);
   useEffect(() => {
     const fetchTopics = async () => {
       const data = await getTopics();
+      data.push({ topic_name: "All Topics..." });
       setTopicsData(data);
     };
     fetchTopics();
   }, []);
+
   return (
     <View>
       <Dropdown
@@ -36,7 +47,7 @@ export default function Filter({
         placeholder={"Topics"}
         searchPlaceholder="Search..."
         value={topicsValue}
-        onChange={(item) => {
+        onChange={(item: itemObj) => {
           setTopicsValue(item.topic_name);
         }}
       />

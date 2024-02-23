@@ -19,7 +19,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="CurrentKata"
         options={{
-          title: "Current Katas",
+          title: "Current Kata",
           headerShown: false,
           tabBarIcon: () => (
             <AntDesign name="codesquareo" size={24} color="black" />

@@ -6,8 +6,8 @@ import CurrentUserContext from "app/context/UserContext";
 
 export default function Page() {
   const currentUser = useContext(CurrentUserContext);
-  const [topicsValue, setTopicsValue] = useState("null");
-  const [orderValue, setOrderValue] = useState("null");
+  const [topicsValue, setTopicsValue] = useState<string>("");
+  const [orderValue, setOrderValue] = useState<string>("");
   return (
     <ScrollView>
       <Header
@@ -16,7 +16,7 @@ export default function Page() {
         orderValue={orderValue}
         setOrderValue={setOrderValue}
       />
-      <KataList topicsValue={topicsValue} orderValue={orderValue}/>
+      <KataList topicsValue={topicsValue} orderValue={orderValue} />
     </ScrollView>
   );
 }
