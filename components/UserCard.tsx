@@ -27,7 +27,7 @@ export default function UserCard() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
   },
   usernameHeader: {
     fontWeight: "bold",
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1,
+    minHeight: 300,
   },
 });
