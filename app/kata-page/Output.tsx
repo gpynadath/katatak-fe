@@ -25,7 +25,12 @@ export default function Output({
   kata_id: number;
   input: string;
 }) {
-  const { output, isLoading, error }: SendInput = useSendInput(kata_id, input);
+  console.log(input + "<< input" + input.trim() + "<<input.trim()");
+  const formattedStr: string = input.replaceAll('"', "'");
+  const { output, isLoading, error }: SendInput = useSendInput(
+    kata_id,
+    formattedStr.trim()
+  );
 
   if (isLoading && input === "Default")
     return (
@@ -33,13 +38,18 @@ export default function Output({
         Submit your function to pass the tests!
       </Text>
     );
-  if (isLoading && input !== "Default") return <Text>Loading...</Text>;
+  if (isLoading && input !== "Default")
+    return (
+      <Text style={styles.baseText}>
+        Testing your code (this might take a moment)...
+      </Text>
+    );
   if (error) return <Text>Error...Solution </Text>; // Add indepth error handling...
   if (!output) return <Text>No Output</Text>;
 
   return (
     <>
-      <Text>
+      <Text style={styles.baseText}>
         {output.success
           ? "SUCCESS\n" + output.test_results
           : "FAIL\n" + output.test_results}
