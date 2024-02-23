@@ -1,18 +1,40 @@
-import React from "react";
-import { View, StyleSheet, Image, ScrollView, Button } from "react-native";
+import React, { useContext } from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Button,
+  Pressable,
+  Linking,
+} from "react-native";
 import { Text, Card, Icon } from "@rneui/themed";
+import { ActiveKataContext } from "app/context/ActiveKata";
+import { router } from "expo-router";
 
 export default function KataCard({ kataData }) {
+  const { activeKata, setActiveKata } = useContext(ActiveKataContext);
+  const onPressFunction = (id: number) => {
+    console.log(id);
+    setActiveKata(id);
+  };
   return (
     <ScrollView>
       {kataData.map((kata: object) => {
         return (
-          <Card>
+          <Card key={kata.kata_id}>
             <View style={styles.user}>
               <Text style={styles.name}>{kata.kata_name}</Text>
               <Text style={styles.name}>{kata.description}</Text>
               <Text style={styles.name}>{kata.difficulty}</Text>
-              <Button title="Go to Kata" />
+              <Pressable
+                onPress={() => {
+                  router.push("/CurrentKata");
+                  onPressFunction(kata.kata_id);
+                }}
+              >
+                <Text>Solve this!</Text>
+              </Pressable>
             </View>
           </Card>
         );

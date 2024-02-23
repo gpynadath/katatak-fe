@@ -20,13 +20,15 @@ export default function Header() {
   );
 }
 
+const marginTop = "15%";
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+    marginTop: marginTop,
   },
   header: {
     display: "flex",
     flexDirection: "row",
-    justifyContent:"space-evenly"
+    justifyContent: "space-evenly",
   },
 });

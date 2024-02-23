@@ -32,3 +32,4 @@ export async function getTopics(){
   const data=await axios.get("https://katatak.onrender.com/api/topics")  
   return data.data.topics
 }
+
