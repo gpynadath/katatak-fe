@@ -3,14 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { getTopics } from "app/api";
 
-// const topicsData = [
-//   { label: "Arrays", value: "1" },
-//   { label: "Strings", value: "2" },
-// ];
 const orderByData = [
-  { label: "Easy", value: "1" },
-  { label: "Medium", value: "2" },
-  { label: "Hard", value: "2" },
+  { label: "Easy", value: "easy" },
+  { label: "Medium", value: "medium" },
+  { label: "Hard", value: "hard" },
 ];
 
 export default function Filter() {
@@ -43,8 +39,7 @@ export default function Filter() {
       />
       <Dropdown
         style={styles.dropdown}
-        data={topicsData}
-        search
+        data={orderByData}
         maxHeight={300}
         labelField="label"
         valueField="value"

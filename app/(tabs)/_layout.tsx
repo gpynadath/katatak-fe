@@ -12,6 +12,7 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: "Home",
+          headerShown: false,
           tabBarIcon: () => <AntDesign name="home" size={24} color="black" />,
         }}
       />
@@ -19,6 +20,7 @@ export default function TabsLayout() {
         name="CurrentKata"
         options={{
           title: "Current Katas",
+          headerShown: false,
           tabBarIcon: () => (
             <AntDesign name="codesquareo" size={24} color="black" />
           ),
@@ -28,6 +30,7 @@ export default function TabsLayout() {
         name="User"
         options={{
           title: currentUser.username,
+          headerShown: false,
           tabBarIcon: () => <AntDesign name="user" size={24} color="black" />,
         }}
       />
