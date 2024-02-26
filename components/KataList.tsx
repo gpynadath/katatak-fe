@@ -17,20 +17,26 @@ type kataObj = {
 
 export default function KataList({ topicsValue, orderValue }: KataListProps) {
   const [kataData, setKataData] = useState<kataObj[]>([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     const fetchData = async () => {
       if (topicsValue === "All Topics...") {
         const data = await getAllKatas("", orderValue);
         setKataData(data.data.katas);
+        setLoading(false);
       } else {
         const data = await getAllKatas(topicsValue, orderValue);
         setKataData(data.data.katas);
+        setLoading(false);
       }
     };
     fetchData();
   }, [topicsValue, orderValue]);
 
+  if (isLoading) return <Text>Loading...</Text>;
   return (
     <View style={styles.container}>
       <KataCard kataData={kataData} />

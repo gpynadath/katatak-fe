@@ -36,7 +36,7 @@ export default function Filter({
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <Dropdown
         style={styles.dropdown}
         data={topicsData}
@@ -68,8 +68,17 @@ export default function Filter({
   );
 }
 
+const width = "40%";
+
 const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
   dropdown: {
+    display: "flex",
+    width: width,
     margin: 16,
     height: 50,
     borderBottomColor: "gray",
