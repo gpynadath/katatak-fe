@@ -14,10 +14,6 @@ export default function CodeInputEditor({
   setInput: any;
   function_template: string;
 }) {
-  console.log(
-    function_template.slice(0, function_template.length - 1) + "\n}",
-    "<< function template in codeinputeditor"
-  );
   const formattedTemplate: string =
     function_template.slice(0, function_template.indexOf("{") + 1) +
     "\n" +
@@ -27,7 +23,7 @@ export default function CodeInputEditor({
     ) +
     "\n}";
   const [code, setCode] = useState(formattedTemplate);
-  console.log(code, "<<< code");
+
   return (
     <View>
       <View style={styles.codeEditor}>
