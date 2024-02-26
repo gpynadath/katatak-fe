@@ -1,4 +1,4 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Pressable } from "react-native";
 import { useState } from "react";
 import { useKeyboard } from "@react-native-community/hooks";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -26,6 +26,12 @@ export default function CodeInputEditor({
 
   return (
     <View>
+      <View style={styles.keyWordButtons}>
+        <Button title="const" onPress={() => {return setCode((currentCode) => {
+          console.log(code);
+          return currentCode + "const"
+        })}}/>
+      </View>
       <View style={styles.codeEditor}>
         <CodeEditor
           style={getEditorStyle()}
@@ -60,3 +66,11 @@ function getEditorStyle() {
       : {}),
   };
 }
+
+// function handleKeyWordPress(value: string, code: string, setCode){
+//   console.log(value)
+//   console.log(code)
+//   const insertedCode = code + value;
+//   setCode(insertedCode);
+//   console.log(code)
+// }
