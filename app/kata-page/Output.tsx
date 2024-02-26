@@ -25,7 +25,6 @@ export default function Output({
   kata_id: number;
   input: string;
 }) {
-  console.log(input + "<< input" + input.trim() + "<<input.trim()");
   const formattedStr: string = input.replaceAll('"', "'");
   const { output, isLoading, error }: SendInput = useSendInput(
     kata_id,
@@ -46,7 +45,7 @@ export default function Output({
     );
   if (error) return <Text>Error...Solution </Text>; // Add indepth error handling...
   if (!output) return <Text>No Output</Text>;
-
+  console.log(output.logs, "<<< output.logs");
   return (
     <>
       <Text style={styles.baseText}>
@@ -55,7 +54,7 @@ export default function Output({
           : "FAIL\n" + output.test_results}
         {output.logs
           ? "\nLogs (remember, any console.logs will log for each test..):\n" +
-            output.logs
+            output.logs.join("\n")
           : null}
       </Text>
     </>
