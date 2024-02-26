@@ -37,7 +37,11 @@ export default function KataPage() {
     <View style={styles.container}>
       <ScrollView>
         <KataData kata_name={kata.kata_name} description={kata.description} />
-        <Solution kata_id={kata.kata_id} setComplete={setComplete} />
+        <Solution
+          kata_id={kata.kata_id}
+          setComplete={setComplete}
+          function_template={kata.function_template}
+        />
       </ScrollView>
     </View>
   );
