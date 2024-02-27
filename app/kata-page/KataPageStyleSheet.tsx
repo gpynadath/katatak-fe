@@ -21,5 +21,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20
-      }
+      },
+    keyWordButtons: {
+      display: 'flex',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
   });
