@@ -10,6 +10,7 @@ type kataObj = {
   description: string;
   difficulty: string;
 };
+let colour = "red";
 
 export default function KataCard({ kataData }: { kataData: kataObj[] }) {
   const { activeKata, setActiveKata } = useContext(ActiveKataContext);
@@ -20,12 +21,29 @@ export default function KataCard({ kataData }: { kataData: kataObj[] }) {
   return (
     <ScrollView>
       {kataData.map((kata: kataObj) => {
+        if (kata.difficulty === "Easy") {
+          colour = "green";
+        } else if (kata.difficulty === "Medium") {
+          colour = "red";
+        } else {
+          colour = "blue";
+        }
         return (
           <Card key={kata.kata_id}>
             <View style={styles.user}>
               <Text style={styles.name}>{kata.kata_name}</Text>
               <Text style={styles.name}>{kata.description}</Text>
-              <Text style={styles.name}>{kata.difficulty}</Text>
+              <Text
+                style={
+                  kata.difficulty !== "Easy"
+                    ? kata.difficulty === "Medium"
+                      ? styles.orange
+                      : styles.red
+                    : styles.green
+                }
+              >
+                {kata.difficulty}
+              </Text>
               <Pressable
                 onPress={() => {
                   router.push("/CurrentKata");
@@ -56,15 +74,24 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 5,
   },
-  buttonText:{
-    borderColor:"lightblue",
-    borderWidth:2,
-    width:80,
-    borderRadius:5,
-    textAlign:"center",
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    flexDirection:"row",
-  }
+  buttonText: {
+    borderColor: "lightblue",
+    borderWidth: 2,
+    width: 80,
+    borderRadius: 5,
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  orange: {
+    color: "orange",
+  },
+  red: {
+    color: "red",
+  },
+  green: {
+    color: "green",
+  },
 });

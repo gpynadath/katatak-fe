@@ -16,17 +16,21 @@ export default function UserCard() {
         alt={`${currentUser.username}'s avatar`}
         style={styles.img}
       />
-      <Text style={[styles.container, styles.usernameHeader]}>
-        {currentUser.username}
-      </Text>
-      <Text style={styles.container}>{currentUser.bio}</Text>
+      <Text style={[styles.usernameHeader]}>{currentUser.username}</Text>
+      <Text style={styles.bio}>"{currentUser.bio}"</Text>
       {/*stats go here*/}
+      <Text>Katas Completed:</Text>
+      <Text>Topics Done:</Text>
+      <Text>Streak:</Text>
     </View>
   );
 }
 
+const marginTop = "10%";
 const styles = StyleSheet.create({
   container: {
+    display: "flex",
+    alignItems: "center",
     flex: 3,
   },
   usernameHeader: {
@@ -34,7 +38,15 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   img: {
-    flex: 1,
-    minHeight: 300,
+    padding: 50,
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+    marginTop: marginTop,
+  },
+  bio: {
+    margin: 20,
+    fontFamily: "Arial",
+    fontSize: 20,
   },
 });
