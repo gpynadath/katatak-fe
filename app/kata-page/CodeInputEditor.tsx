@@ -56,7 +56,7 @@ export default function CodeInputEditor({
         />
       </View>
       <View style={styles.submitButton}>
-        <Button title="Submit" onPress={() => setInput(code)} />
+        <Button title="Submit" onPress={() => setInput(value)} />
       </View>
     </View>
   );
