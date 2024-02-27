@@ -41,16 +41,18 @@ export default function CodeInputEditor({
                 "const " +
                 value.slice(cursorPosition, value.length)
             );
+            setCursorPosition(cursorPosition + 6);
           }}
         />
         <Button
-          title="let "
+          title="let"
           onPress={(event) => {
             setValue(
               value.slice(0, cursorPosition) +
                 "let " +
                 value.slice(cursorPosition, value.length)
             );
+            setCursorPosition(cursorPosition + 4);
           }}
         />
         <Button
@@ -61,6 +63,7 @@ export default function CodeInputEditor({
                 "return " +
                 value.slice(cursorPosition, value.length)
             );
+            setCursorPosition(cursorPosition + 7);
           }}
         />
         <Button
@@ -71,6 +74,7 @@ export default function CodeInputEditor({
                 "[]" +
                 value.slice(cursorPosition, value.length)
             );
+            setCursorPosition(cursorPosition + 2);
           }}
         />
         <Button
@@ -81,6 +85,7 @@ export default function CodeInputEditor({
                 "()" +
                 value.slice(cursorPosition, value.length)
             );
+            setCursorPosition(cursorPosition + 2);
           }}
         />
         <Button
@@ -91,6 +96,7 @@ export default function CodeInputEditor({
                 "{}" +
                 value.slice(cursorPosition, value.length)
             );
+            setCursorPosition(cursorPosition + 2);
           }}
         />
         <CodeEditor
