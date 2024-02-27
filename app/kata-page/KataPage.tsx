@@ -76,5 +76,8 @@ const marginTop = "15%";
 const styles = StyleSheet.create({
   container: {
     marginTop: marginTop,
+    backgroundColor: "#F2F2D0",
+    flex: 1,
+    alignItems: "center",
   },
 });

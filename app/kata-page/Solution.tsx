@@ -7,7 +7,6 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
 interface Solution {
   kata_id: number;
   setComplete: Dispatch<SetStateAction<boolean>>;
-
 }
 
 export default function Solution({
@@ -18,12 +17,12 @@ export default function Solution({
   const [input, setInput] = useState("Default");
 
   return (
-    <>
+    <View>
       <CodeInputEditor
         setInput={setInput}
         function_template={function_template}
       />
       <Output kata_id={kata_id} input={input} />
-    </>
+    </View>
   );
 }
