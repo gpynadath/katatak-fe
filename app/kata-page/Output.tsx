@@ -1,13 +1,12 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import { postKata } from "../api";
 import { styles } from "./KataPageStyleSheet";
+import TestResult from "./TestResult";
 
 interface Output {
   success: boolean;
-  stderr: string;
-  stdout: string;
-  test_results: string;
+  test_results: individualTestObj[];
   logs: Array<string>;
   posted_solution: boolean;
 }
@@ -16,6 +15,12 @@ interface SendInput {
   output: Output | undefined;
   isLoading: boolean;
   error: any;
+}
+
+interface individualTestObj {
+  pass: boolean;
+  description: string;
+  logs: Array<string>;
 }
 
 export default function Output({
@@ -47,17 +52,19 @@ export default function Output({
   if (!output) return <Text>No Output</Text>;
   console.log(output.logs, "<<< output.logs");
   return (
-    <>
-      <Text style={styles.baseText}>
-        {output.success
-          ? "SUCCESS\n" + output.test_results
-          : "FAIL\n" + output.test_results}
-        {output.logs
-          ? "\nLogs (remember, any console.logs will log for each test..):\n" +
-            output.logs.join("\n")
-          : null}
-      </Text>
-    </>
+    <View style={styles.outputContainer}>
+      <Text style={styles.baseText}>{output.success ? "SUCCESS" : "FAIL"}</Text>
+      {output.test_results.map((result: individualTestObj) => {
+        return (
+          <TestResult
+            key={result.description}
+            description={result.description}
+            pass={result.pass}
+            logs={result.logs}
+          />
+        );
+      })}
+    </View>
   );
 }
 

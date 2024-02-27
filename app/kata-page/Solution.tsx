@@ -1,12 +1,13 @@
 import CodeInputEditor from "./CodeInputEditor";
 import Output from "./Output";
-import { View, Text, Button } from "react-native";
+
+import { View, Text, Button, StyleSheet } from "react-native";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 interface Solution {
   kata_id: number;
   setComplete: Dispatch<SetStateAction<boolean>>;
-  function_template: string;
+
 }
 
 export default function Solution({
