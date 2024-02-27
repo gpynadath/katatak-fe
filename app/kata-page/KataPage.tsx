@@ -4,6 +4,7 @@ import { StyleSheet, View, ScrollView, Text, Button } from "react-native";
 import { useState, useEffect, useContext } from "react";
 import { getKata } from "../api";
 import { ActiveKataContext } from "../context/ActiveKata";
+import Loading from "components/Loading";
 
 interface Kata {
   kata_id: number;
@@ -29,20 +30,23 @@ export default function KataPage() {
   const { kata, isLoading, error }: FetchKata = useFetchKata(activeKata); // this will need to fetch the current kata (perhaps by a context?)
   const [isComplete, setComplete] = useState(false);
 
-  if (isLoading) return <Text>Loading...</Text>;
   if (error) return <Text>Error...Katapage </Text>; // Add indepth error handling...
   if (!kata) return <Text>Kata not found</Text>;
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <KataData kata_name={kata.kata_name} description={kata.description} />
-        <Solution
-          kata_id={kata.kata_id}
-          setComplete={setComplete}
-          function_template={kata.function_template}
-        />
-      </ScrollView>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <ScrollView>
+          <KataData kata_name={kata.kata_name} description={kata.description} />
+          <Solution
+            kata_id={kata.kata_id}
+            setComplete={setComplete}
+            function_template={kata.function_template}
+          />
+        </ScrollView>
+      )}
     </View>
   );
 }

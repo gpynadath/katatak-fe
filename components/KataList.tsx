@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import KataCard from "./KataCard";
 
 import { getAllKatas } from "app/api";
+import Loading from "./Loading";
 
 type KataListProps = {
   topicsValue: string;
@@ -36,20 +37,20 @@ export default function KataList({ topicsValue, orderValue }: KataListProps) {
     fetchData();
   }, [topicsValue, orderValue]);
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <Loading />;
   return (
     <ScrollView>
-    <View style={styles.container}>
-      {kataData.map((kata) => {
-        return <KataCard kata={kata} key={kata.kata_id} />
-      })}
-    </View>
+      <View style={styles.container}>
+        {kataData.map((kata) => {
+          return <KataCard kata={kata} key={kata.kata_id} />;
+        })}
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F2F2D0'
+    backgroundColor: "#F2F2D0",
   },
 });
