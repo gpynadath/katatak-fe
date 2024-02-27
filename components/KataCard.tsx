@@ -1,30 +1,44 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, ScrollView, Pressable, ImageBackground } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  ImageBackground,
+} from "react-native";
 import { Text, Card } from "@rneui/themed";
 import { ActiveKataContext } from "app/context/ActiveKata";
 import { router } from "expo-router";
-import { useFonts } from 'expo-font';
+import { useFonts } from "expo-font";
 
 type kataObj = {
   kata_id: number;
   kata_name: string;
   description: string;
   difficulty: string;
+  topics: string[];
 };
 let colour = "red";
 
 const imagePath = {
-  hard: require('../assets/card_h.png'),
-  medium: require('../assets/card_m.png'),
-  easy: require('../assets/card_e.png'),
-}
+  hard: require("../assets/card_h.png"),
+  medium: require("../assets/card_m.png"),
+  easy: require("../assets/card_e.png"),
+};
 
-export default function KataCard({ kata }: { kata: kataObj }) {
+export default function KataCard({
+  kata,
+  solved,
+}: {
+  kata: kataObj;
+  solved: boolean;
+}) {
   const { activeKata, setActiveKata } = useContext(ActiveKataContext);
+  const solvedText = solved ? "SOLVED" : null;
 
   const [fontsLoaded, fontError] = useFonts({
-    'Pixellari': require('../assets/fonts/Pixellari.ttf'),
-    'dogica': require('../assets/fonts/dogica.ttf'),
+    Pixellari: require("../assets/fonts/Pixellari.ttf"),
+    dogica: require("../assets/fonts/dogica.ttf"),
   });
 
   if (!fontsLoaded && !fontError) {
@@ -34,28 +48,38 @@ export default function KataCard({ kata }: { kata: kataObj }) {
   const selectKata = () => {
     router.push("/CurrentKata");
     setActiveKata(kata.kata_id);
-  }
+  };
 
   return (
     <Card key={kata.kata_id} containerStyle={styles.hideCard}>
-      <ImageBackground resizeMode="contain" source={getCardImg(kata.difficulty)} style={styles.card}>
-      <View style={styles.header}>
-        <Text style={styles.titleText}>{capTitleLength(kata.kata_name)}</Text>
-        <Text style={styles.difficultyText}>{kata.difficulty}</Text>
-      </View>
-      <View style={styles.content}>
-        <Text style={styles.topicText}>{'< topic1 >'}</Text>
-        <Text style={styles.topicText}>{'< topic2 >'}</Text>
-      </View>
-      <View style={styles.footer}>
-      <FightButton selectKata={selectKata} />
-      </View>
+      <ImageBackground
+        resizeMode="contain"
+        source={getCardImg(kata.difficulty)}
+        style={styles.card}
+      >
+        <View style={styles.header}>
+          <Text style={styles.titleText}>{capTitleLength(kata.kata_name)}</Text>
+          <Text style={styles.topicText}>{solvedText}</Text>
+          <Text style={styles.difficultyText}>{kata.difficulty}</Text>
+        </View>
+        <View style={styles.content}>
+          {kata.topics.map((topic) => {
+            return (
+              <Text style={styles.topicText} key={topic + kata.kata_id}>
+                {topic}
+              </Text>
+            );
+          })}
+        </View>
+        <View style={styles.footer}>
+          <FightButton selectKata={selectKata} />
+        </View>
       </ImageBackground>
     </Card>
   );
 }
 
-function FightButton({selectKata} : any) {
+function FightButton({ selectKata }: any) {
   const [isPressed, setIsPressed] = useState<Boolean>(false);
 
   const onPressInEvent = () => {
@@ -70,16 +94,16 @@ function FightButton({selectKata} : any) {
 
   return (
     <Pressable onPress={onPressInEvent} onPressOut={onPressOutEvent}>
-      <Text style={styles.fightButtonText}>{'[ FIGHT! ]'}</Text>
+      <Text style={styles.fightButtonText}>{"[ FIGHT! ]"}</Text>
     </Pressable>
-  )
+  );
 }
 
 // move this to utility class.
-function capTitleLength(title : string) {
-  const maxLength = 20
-  if(title.length > maxLength) {
-    const cappedTitle = `${title.substring(0, maxLength)}...`
+function capTitleLength(title: string) {
+  const maxLength = 20;
+  if (title.length > maxLength) {
+    const cappedTitle = `${title.substring(0, maxLength)}...`;
     return cappedTitle;
   }
 
@@ -87,8 +111,8 @@ function capTitleLength(title : string) {
 }
 
 // move this to utility class.
-function getCardImg(difficulty : string) {
-  switch(difficulty) {
+function getCardImg(difficulty: string) {
+  switch (difficulty) {
     case "Easy":
       return imagePath.easy;
     case "Medium":
@@ -98,65 +122,64 @@ function getCardImg(difficulty : string) {
   }
 }
 
-
 const styles = StyleSheet.create({
   hideCard: {
-    elevation: 0, 
-    backgroundColor: 'transparent',
-    borderColor: 'transparent'
+    elevation: 0,
+    backgroundColor: "transparent",
+    borderColor: "transparent",
   },
   card: {
-    width: 213 * 1.5, 
+    width: 213 * 1.5,
     height: 97 * 1.5,
-    alignSelf: 'center',
-    justifyContent: 'space-between',
-    //justifyContent: 'center', 
+    alignSelf: "center",
+    justifyContent: "space-between",
+    //justifyContent: 'center',
     //alignItems: 'center',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginTop: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
   titleText: {
-    fontFamily: "Pixellari", 
+    fontFamily: "Pixellari",
     fontSize: 16,
-    marginLeft: 10
+    marginLeft: 10,
   },
   difficultyText: {
-    fontFamily: "dogica", 
+    fontFamily: "dogica",
     fontSize: 8,
     marginRight: 10,
-    marginTop: 6
+    marginTop: 6,
   },
   topicText: {
-    fontFamily: "dogica", 
+    fontFamily: "dogica",
     fontSize: 8,
-    marginBottom: 15
+    marginBottom: 15,
   },
   content: {
-    marginLeft: 10
+    marginLeft: 10,
   },
   footer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   fightButton: {
     flex: 3,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   fightButtonText: {
-    fontFamily: "Pixellari", 
+    fontFamily: "Pixellari",
     fontSize: 16,
     marginBottom: 8,
-    color: 'black'
+    color: "black",
   },
   pressedFightButtonText: {
-    fontFamily: "Pixellari", 
+    fontFamily: "Pixellari",
     fontSize: 16,
     marginBottom: 8,
-    color: 'gray'
-  }
+    color: "gray",
+  },
 });
 
 /*
