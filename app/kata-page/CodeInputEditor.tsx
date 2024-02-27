@@ -38,7 +38,57 @@ export default function CodeInputEditor({
           onPress={(event) => {
             setValue(
               value.slice(0, cursorPosition) +
-                "const" +
+                "const " +
+                value.slice(cursorPosition, value.length)
+            );
+          }}
+        />
+        <Button
+          title="let "
+          onPress={(event) => {
+            setValue(
+              value.slice(0, cursorPosition) +
+                "let " +
+                value.slice(cursorPosition, value.length)
+            );
+          }}
+        />
+        <Button
+          title="return"
+          onPress={(event) => {
+            setValue(
+              value.slice(0, cursorPosition) +
+                "return " +
+                value.slice(cursorPosition, value.length)
+            );
+          }}
+        />
+        <Button
+          title="[ ]"
+          onPress={(event) => {
+            setValue(
+              value.slice(0, cursorPosition) +
+                "[]" +
+                value.slice(cursorPosition, value.length)
+            );
+          }}
+        />
+        <Button
+          title="( )"
+          onPress={(event) => {
+            setValue(
+              value.slice(0, cursorPosition) +
+                "()" +
+                value.slice(cursorPosition, value.length)
+            );
+          }}
+        />
+        <Button
+          title="{ }"
+          onPress={(event) => {
+            setValue(
+              value.slice(0, cursorPosition) +
+                "{}" +
                 value.slice(cursorPosition, value.length)
             );
           }}
