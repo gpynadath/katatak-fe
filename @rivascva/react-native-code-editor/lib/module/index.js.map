@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.ts"],"names":["default","CodeEditorSyntaxStyles"],"mappings":"AAAA,SAASA,OAAT,EAA4CC,sBAA5C,QAA0E,cAA1E","sourcesContent":["export { default, type CodeEditorStyleType, CodeEditorSyntaxStyles } from './CodeEditor';\n"]}
