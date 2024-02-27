@@ -47,4 +47,10 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingVertical: 10,
   },
-});
+    keyWordButtons: {
+      display: 'flex',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
+  });

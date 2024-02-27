@@ -30,7 +30,6 @@ export default function Output({
   kata_id: number;
   input: string;
 }) {
-  //console.log(input + "<< input" + input.trim() + "<<input.trim()");
   const formattedStr: string = input.replaceAll('"', "'");
   const { output, isLoading, error }: SendInput = useSendInput(
     kata_id,
@@ -51,7 +50,7 @@ export default function Output({
     );
   if (error) return <Text>Error...Solution </Text>; // Add indepth error handling...
   if (!output) return <Text>No Output</Text>;
-
+  console.log(output.logs, "<<< output.logs");
   return (
     <View style={styles.outputContainer}>
       <Text style={styles.baseText}>{output.success ? "SUCCESS" : "FAIL"}</Text>

@@ -32,7 +32,7 @@ export default function KataCard({ kataData }: { kataData: kataObj[] }) {
                   onPressFunction(kata.kata_id);
                 }}
               >
-                <Text>Solve this!</Text>
+                <Text style={styles.buttonText}>Solve this!</Text>
               </Pressable>
             </View>
           </Card>
@@ -56,4 +56,15 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 5,
   },
+  buttonText:{
+    borderColor:"lightblue",
+    borderWidth:2,
+    width:80,
+    borderRadius:5,
+    textAlign:"center",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    flexDirection:"row",
+  }
 });
