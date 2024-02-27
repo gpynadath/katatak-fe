@@ -1,80 +1,57 @@
-import Solution from "./Solution";
-import KataData from "./KataData";
-import { StyleSheet, View, ScrollView, Text, Button } from "react-native";
-import { useState, useEffect, useContext } from "react";
-import { getKata } from "../api";
-import { ActiveKataContext } from "../context/ActiveKata";
 
-interface Kata {
+import { ScrollView, View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import KataCard from "./KataCard";
+
+import { getAllKatas } from "app/api";
+import Loading from "./Loading";
+
+type KataListProps = {
+  topicsValue: string;
+  orderValue: string;
+};
+type kataObj = {
   kata_id: number;
   kata_name: string;
   description: string;
-  test_path: string;
   difficulty: string;
-  date_created: string;
-  votes: number;
-  function_template: string;
-}
+};
 
-interface FetchKata {
-  kata: Kata | undefined;
-  isLoading: boolean;
-  error: any;
-}
+export default function KataList({ topicsValue, orderValue }: KataListProps) {
+  const [kataData, setKataData] = useState<kataObj[]>([]);
+  const [isLoading, setLoading] = useState(true);
 
-// Error Note: error is using any the moment to anticipate a custom error type to accept the format of the error recieved from the server.
+  useEffect(() => {
+    setLoading(true);
 
-export default function KataPage() {
-  const { activeKata }: { activeKata: number } = useContext(ActiveKataContext);
-  const { kata, isLoading, error }: FetchKata = useFetchKata(activeKata); // this will need to fetch the current kata (perhaps by a context?)
-  const [isComplete, setComplete] = useState(false);
+    const fetchData = async () => {
+      if (topicsValue === "All Topics...") {
+        const data = await getAllKatas("", orderValue);
+        setKataData(data.data.katas);
+        setLoading(false);
+      } else {
+        const data = await getAllKatas(topicsValue, orderValue);
+        setKataData(data.data.katas);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [topicsValue, orderValue]);
 
-  if (isLoading) return <Text>Loading...</Text>;
-  if (error) return <Text>Error...Katapage </Text>; // Add indepth error handling...
-  if (!kata) return <Text>Kata not found</Text>;
-
+  if (isLoading) return <Loading />;
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <KataData kata_name={kata.kata_name} description={kata.description} />
-        <Solution
-          kata_id={kata.kata_id}
-          setComplete={setComplete}
-          function_template={kata.function_template}
-        />
-      </ScrollView>
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        {kataData.map((kata) => {
+          return <KataCard kata={kata} key={kata.kata_id} />;
+        })}
+      </View>
+    </ScrollView>
   );
 }
 
-function useFetchKata(kata_id: number) {
-  const [kata, setKata] = useState<Kata>();
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const loadComments = async () => {
-    setLoading(true);
-    try {
-      const loadedKata: Kata = await getKata(kata_id);
-      setKata(loadedKata);
-      setError(null);
-    } catch (err: any) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadComments();
-  }, [kata_id]);
-
-  return { kata, isLoading, error };
-}
-
-const marginTop = "15%";
 const styles = StyleSheet.create({
   container: {
-    marginTop: marginTop,
+    backgroundColor: "#F2F2D0",
   },
 });
