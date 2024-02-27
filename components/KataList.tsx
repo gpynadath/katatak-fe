@@ -2,7 +2,7 @@ import { ScrollView, View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import KataCard from "./KataCard";
 import CurrentUserContext from "app/context/UserContext";
-
+import Loading from "./Loading";
 import { getAllKatas, getSolutionsByUserId } from "app/api";
 import currentKata from "app/(tabs)/CurrentKata";
 
@@ -58,7 +58,7 @@ export default function KataList({ topicsValue, orderValue }: KataListProps) {
     fetchData();
   }, [topicsValue, orderValue]);
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <Loading />;
   return (
     <ScrollView>
       <View style={styles.container}>
