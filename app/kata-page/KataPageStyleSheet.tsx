@@ -49,8 +49,8 @@ export const styles = StyleSheet.create({
   },
     keyWordButtons: {
       display: 'flex',
+      flexDirection: 'row',
       width: '100%',
       justifyContent: 'center',
-      alignItems: 'center',
     }
   });
