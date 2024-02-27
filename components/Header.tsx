@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useState } from "react";
 import FilterToggleButton from "./FilterToggleButton";
-import { FontAwesome5 } from "@expo/vector-icons";
 import Filter from "./Filter";
 import catImage from "../assets/katatak_logo.png";
 
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems:"center"
+    alignItems: "center",
   },
   headerText: {
     fontFamily: "Arial",

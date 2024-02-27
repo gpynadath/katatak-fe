@@ -23,7 +23,7 @@ export async function postKata(kata_id: number, input: string) {
   return results;
 }
 
-export async function getAllKatas(topic:string, order_by:string) {
+export async function getAllKatas(topic: string, order_by: string) {
   const data = await axios.get(
     `https://katatak.onrender.com/api/katas?topic=${topic}&order_by=${order_by}`
   );

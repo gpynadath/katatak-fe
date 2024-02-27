@@ -11,13 +11,14 @@ export default function User() {
   return (
     <View style={styles.container}>
       <UserCard />
-      <UserKatas />
     </View>
   );
 }
 
+const marginTop = "11%";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: marginTop,
   },
 });

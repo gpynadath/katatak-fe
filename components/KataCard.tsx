@@ -11,6 +11,7 @@ type kataObj = {
   description: string;
   difficulty: string;
 };
+let colour = "red";
 
 const imagePath = {
   hard: require('../assets/card_h.png'),
