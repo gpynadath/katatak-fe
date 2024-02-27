@@ -30,9 +30,8 @@ export default function CodeInputEditor({
 
   return (
     <View>
-      <View style={styles.keyWordButtons}></View>
-
       <View style={styles.codeEditor}>
+      <View style={styles.keyWordButtons}>
         <Button
           title="const"
           onPress={(event) => {
@@ -99,6 +98,18 @@ export default function CodeInputEditor({
             setCursorPosition(cursorPosition + 2);
           }}
         />
+        <Button
+          title="' '"
+          onPress={(event) => {
+            setValue(
+              value.slice(0, cursorPosition) +
+                "\'\'" +
+                value.slice(cursorPosition, value.length)
+            );
+            setCursorPosition(cursorPosition + 2);
+          }}
+        />
+        </View>
         <CodeEditor
           style={getEditorStyle()}
           language="javascript"
