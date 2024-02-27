@@ -9,9 +9,13 @@ type result = {
 };
 
 export default function TestResult({ pass, description, logs }: result) {
+  const testContainerSize =
+    description.length > 50
+      ? styles.testContainerLarge
+      : styles.testContainerSmall;
   return (
     <>
-      <View style={styles.testContainer}>
+      <View style={[styles.testContainer, testContainerSize]}>
         {pass ? (
           <Image
             source={require("../../assets/tick-icon.png")}

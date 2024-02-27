@@ -23,29 +23,41 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
   outputContainer: {
-    padding: 20,
+    alignItems: "center",
   },
   testContainer: {
     minHeight: 60,
     flex: 1,
     flexDirection: "row",
+    marginBottom: 15,
+    width: 300,
+  },
+  testContainerSmall: {
     alignItems: "center",
   },
+  testContainerLarge: {
+    alignItems: "flex-start",
+  },
   tick_cross: {
-    width: 48,
-    height: 48,
+    width: 40,
+    height: 40,
   },
   testDescription: {
     height: "auto",
     fontSize: 16,
     paddingLeft: 10,
+    maxWidth: 250,
   },
   logsContainer: {
-    paddingLeft: 50,
+    width: 300,
+    paddingVertical: 10,
+    backgroundColor: "grey",
+    marginBottom: 10,
   },
   logText: {
-    paddingLeft: 20,
+    paddingLeft: 50,
     paddingVertical: 10,
+    maxWidth: 200,
   },
     keyWordButtons: {
       display: 'flex',
