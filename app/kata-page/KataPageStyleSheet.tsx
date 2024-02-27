@@ -59,10 +59,10 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     maxWidth: 200,
   },
-  keyWordButtons: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+    keyWordButtons: {
+      display: 'flex',
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'center',
+    }
+  });
