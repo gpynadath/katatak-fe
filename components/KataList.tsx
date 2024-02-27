@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import KataCard from "./KataCard";
 
@@ -38,16 +38,18 @@ export default function KataList({ topicsValue, orderValue }: KataListProps) {
 
   if (isLoading) return <Text>Loading...</Text>;
   return (
+    <ScrollView>
     <View style={styles.container}>
-      <KataCard kataData={kataData} />
+      {kataData.map((kata) => {
+        return <KataCard kata={kata} key={kata.kata_id} />
+      })}
     </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 2,
-    padding: 5,
-    margin: 5,
+    backgroundColor: '#F2F2D0'
   },
 });

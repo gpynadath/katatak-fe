@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import FilterToggleButton from "./FilterToggleButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Filter from "./Filter";
-import catImage from "../assets/catImage.png";
+import catImage from "../assets/katatak_logo.png";
 
 type HeaderProps = {
   topicsValue: string;
@@ -23,7 +23,6 @@ export default function Header({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Katatak</Text>
         <Image source={catImage} style={styles.catImage} />
         <FilterToggleButton isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
       </View>
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     marginTop: marginTop,
-    backgroundColor: "#35B7EB",
+    backgroundColor: "#DDDDBC",
     padding: 10,
   },
   header: {
@@ -58,5 +57,5 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "400",
   },
-  catImage: { height: 70, width: 50 },
+  catImage: { height: 30 * 1.5, width: 179 * 1.5 },
 });
