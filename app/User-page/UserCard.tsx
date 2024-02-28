@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "app/context/UserContext";
 import { getSolutionsByUserId, getKata } from "app/api";
 import { useFonts } from "expo-font";
-import Loading from "../../loadingAndErrors/Loading";
+import Loading from "../../loading-and-errors/Loading";
 import { Dimensions } from "react-native";
 import { styles } from "./userPageStylesheet";
 

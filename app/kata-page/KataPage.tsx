@@ -4,9 +4,9 @@ import { StyleSheet, View, ScrollView, Text, Button } from "react-native";
 import { useState, useEffect, useContext } from "react";
 import { getKata } from "../api";
 import { ActiveKataContext } from "../context/ActiveKata";
-import Loading from "loadingAndErrors/Loading";
+import Loading from "loading-and-errors/Loading";
 import { styles } from "./KataPageStyleSheet";
-import Error from "loadingAndErrors/Error";
+import Error from "loading-and-errors/Error";
 
 interface Kata {
   kata_id: number;

@@ -2,7 +2,7 @@ import { ScrollView, View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import KataCard from "./KataCard";
 import CurrentUserContext from "app/context/UserContext";
-import Loading from "../../loadingAndErrors/Loading";
+import Loading from "../../loading-and-errors/Loading";
 import { getAllKatas, getSolutionsByUserId } from "app/api";
 import currentKata from "app/(tabs)/CurrentKata";
 import { styles } from "app/index-page/indexPageStylesheet";
