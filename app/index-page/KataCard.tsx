@@ -1,15 +1,10 @@
 import React, { useContext, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  ImageBackground,
-} from "react-native";
+import { View, Pressable, ImageBackground } from "react-native";
 import { Text, Card } from "@rneui/themed";
 import { ActiveKataContext } from "app/context/ActiveKata";
 import { router } from "expo-router";
 import { useFonts } from "expo-font";
+import { styles } from "./indexPageStylesheet";
 
 type kataObj = {
   kata_id: number;
@@ -21,9 +16,9 @@ type kataObj = {
 let colour = "red";
 
 const imagePath = {
-  hard: require("../assets/card_h.png"),
-  medium: require("../assets/card_m.png"),
-  easy: require("../assets/card_e.png"),
+  hard: require("../../assets/card_h.png"),
+  medium: require("../../assets/card_m.png"),
+  easy: require("../../assets/card_e.png"),
 };
 
 export default function KataCard({
@@ -37,9 +32,9 @@ export default function KataCard({
   const solvedText = solved ? "SOLVED" : null;
 
   const [fontsLoaded, fontError] = useFonts({
-    Pixellari: require("../assets/fonts/Pixellari.ttf"),
-    dogica: require("../assets/fonts/dogica.ttf"),
-    Annoymous: require("../assets/fonts/Anonymous_Pro.ttf"),
+    Pixellari: require("../../assets/fonts/Pixellari.ttf"),
+    dogica: require("../../assets/fonts/dogica.ttf"),
+    Annoymous: require("../../assets/fonts/Anonymous_Pro.ttf"),
   });
 
   const selectKata = () => {
@@ -55,7 +50,7 @@ export default function KataCard({
           source={getCardImg(kata.difficulty)}
           style={styles.card}
         >
-          <View style={styles.header}>
+          <View style={styles.kataHeader}>
             <Text style={styles.titleText}>
               {capTitleLength(kata.kata_name)}
             </Text>
@@ -122,66 +117,6 @@ function getCardImg(difficulty: string) {
       return imagePath.hard;
   }
 }
-
-const styles = StyleSheet.create({
-  hideCard: {
-    elevation: 0,
-    backgroundColor: "transparent",
-    borderColor: "transparent",
-  },
-  card: {
-    width: 213 * 1.5,
-    height: 97 * 1.5,
-    alignSelf: "center",
-    justifyContent: "space-between",
-    //justifyContent: 'center',
-    //alignItems: 'center',
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  titleText: {
-    fontFamily: "Pixellari",
-    fontSize: 16,
-    marginLeft: 10,
-  },
-  difficultyText: {
-    fontFamily: "dogica",
-    fontSize: 8,
-    marginRight: 10,
-    marginTop: 6,
-  },
-  topicText: {
-    fontFamily: "dogica",
-    fontSize: 8,
-    marginBottom: 15,
-  },
-  content: {
-    marginLeft: 10,
-  },
-  footer: {
-    alignItems: "center",
-  },
-  fightButton: {
-    flex: 3,
-    alignSelf: "center",
-  },
-  fightButtonText: {
-    fontFamily: "Pixellari",
-    fontSize: 16,
-    marginBottom: 8,
-    color: "black",
-  },
-  pressedFightButtonText: {
-    fontFamily: "Pixellari",
-    fontSize: 16,
-    marginBottom: 8,
-    color: "gray",
-  },
-});
 
 /*
 <Text style={styles.name}>{kata.kata_name}</Text>

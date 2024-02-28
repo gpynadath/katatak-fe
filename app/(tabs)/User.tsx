@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import { useContext } from "react";
 import CurrentUserContext from "app/context/UserContext";
-import UserCard from "components/UserCard";
+import UserCard from "../User-page/UserCard";
 import UserKatas from "components/UserKatas";
 
 export default function User() {
