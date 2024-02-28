@@ -189,7 +189,7 @@ const SyntaxHighlighter = (props: PropsWithForwardRef): JSX.Element => {
                                 color: lineNumbersColor,
                                 fontFamily,
                                 fontSize: lineNumbersFontSize,
-                                width: lineNumbersPadding ? lineNumbersPadding - 5 : 0,
+                                width: lineNumbersPadding ? lineNumbersPadding : 0,
                             }}
                         >
                             {index + 1}

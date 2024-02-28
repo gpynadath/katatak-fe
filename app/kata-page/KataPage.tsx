@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import { getKata } from "../api";
 import { ActiveKataContext } from "../context/ActiveKata";
 import Loading from "components/Loading";
+import { styles } from "./KataPageStyleSheet";
 
 interface Kata {
   kata_id: number;
@@ -34,11 +35,11 @@ export default function KataPage() {
   if (!kata) return <Text>Kata not found</Text>;
 
   return (
-    <View style={styles.container}>
+    <View style={containerStyles.container}>
       {isLoading ? (
         <Loading />
       ) : (
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.kataPageScrollContainer}>
           <KataData kata_name={kata.kata_name} description={kata.description} />
           <Solution
             kata_id={kata.kata_id}
@@ -77,10 +78,11 @@ function useFetchKata(kata_id: number) {
 }
 
 const marginTop = "15%";
-const styles = StyleSheet.create({
+const containerStyles = StyleSheet.create({
   container: {
     marginTop: marginTop,
     backgroundColor: "#F2F2D0",
+
     flex: 1,
     alignItems: "center",
   },

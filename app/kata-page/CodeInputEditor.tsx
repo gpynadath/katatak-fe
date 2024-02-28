@@ -30,7 +30,7 @@ export default function CodeInputEditor({
   );
 
   return (
-    <View>
+    <>
       <View style={styles.codeEditor}>
         <View style={styles.keyWordButtons}>
           <Pressable
@@ -135,7 +135,7 @@ export default function CodeInputEditor({
           <Text style={styles.submitButton}>Submit</Text>
         </Pressable>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -145,22 +145,12 @@ function getEditorStyle() {
 
   return {
     ...{
-      fontSize: 20,
-      width: 300,
+      flex: 1,
+      fontSize: 17,
+      width: 360,
       height: 300,
       inputLineHeight: 26,
       highlighterLineHeight: 26,
     },
-    ...(keyboard.keyboardShown
-      ? { marginBottom: keyboard.keyboardHeight - insets.bottom }
-      : {}),
   };
 }
-
-// function handleKeyWordPress(value: string, code: string, setCode){
-//   console.log(value)
-//   console.log(code)
-//   const insertedCode = code + value;
-//   setCode(insertedCode);
-//   console.log(code)
-// }

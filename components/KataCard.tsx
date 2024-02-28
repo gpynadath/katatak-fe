@@ -48,31 +48,35 @@ export default function KataCard({
   };
 
   return (
-    <Card key={kata.kata_id} containerStyle={styles.hideCard}>
-      <ImageBackground
-        resizeMode="contain"
-        source={getCardImg(kata.difficulty)}
-        style={styles.card}
-      >
-        <View style={styles.header}>
-          <Text style={styles.titleText}>{capTitleLength(kata.kata_name)}</Text>
-          <Text style={styles.topicText}>{solvedText}</Text>
-          <Text style={styles.difficultyText}>{kata.difficulty}</Text>
-        </View>
-        <View style={styles.content}>
-          {kata.topics.map((topic) => {
-            return (
-              <Text style={styles.topicText} key={topic + kata.kata_id}>
-                {topic}
-              </Text>
-            );
-          })}
-        </View>
-        <View style={styles.footer}>
-          <FightButton selectKata={selectKata} />
-        </View>
-      </ImageBackground>
-    </Card>
+    <Pressable onPress={selectKata}>
+      <Card key={kata.kata_id} containerStyle={styles.hideCard}>
+        <ImageBackground
+          resizeMode="contain"
+          source={getCardImg(kata.difficulty)}
+          style={styles.card}
+        >
+          <View style={styles.header}>
+            <Text style={styles.titleText}>
+              {capTitleLength(kata.kata_name)}
+            </Text>
+            <Text style={styles.topicText}>{solvedText}</Text>
+            <Text style={styles.difficultyText}>{kata.difficulty}</Text>
+          </View>
+          <View style={styles.content}>
+            {kata.topics.map((topic) => {
+              return (
+                <Text style={styles.topicText} key={topic + kata.kata_id}>
+                  {topic}
+                </Text>
+              );
+            })}
+          </View>
+          <View style={styles.footer}>
+            <FightButton selectKata={selectKata} />
+          </View>
+        </ImageBackground>
+      </Card>
+    </Pressable>
   );
 }
 

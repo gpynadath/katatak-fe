@@ -1,38 +1,15 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useState } from "react";
-import FilterToggleButton from "./FilterToggleButton";
-import Filter from "./Filter";
 import catImage from "../assets/katatak_logo.png";
 
-type HeaderProps = {
-  topicsValue: string;
-  setTopicsValue: React.Dispatch<React.SetStateAction<string>>;
-  orderValue: string;
-  setOrderValue: React.Dispatch<React.SetStateAction<string>>;
-};
-
-export default function Header({
-  topicsValue,
-  setTopicsValue,
-  orderValue,
-  setOrderValue,
-}: HeaderProps) {
+export default function Header() {
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={catImage} style={styles.catImage} />
-        <FilterToggleButton isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
       </View>
-      {isEnabled && (
-        <Filter
-          topicsValue={topicsValue}
-          setTopicsValue={setTopicsValue}
-          orderValue={orderValue}
-          setOrderValue={setOrderValue}
-        />
-      )}
     </View>
   );
 }
@@ -42,8 +19,14 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     marginTop: marginTop,
-    backgroundColor: "#DDDDBC",
+    backgroundColor: "#F2F2D0",
     padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.9,
+    shadowRadius: 10,
+    // Elevation for Android
+    elevation: 10,
   },
   header: {
     display: "flex",
