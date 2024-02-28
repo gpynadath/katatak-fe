@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "app/context/UserContext";
@@ -74,6 +74,7 @@ export default function UserCard() {
   if (isLoading) return <Text>Loading...</Text>;
   return (
     <>
+    <ScrollView>
       <View style={styles.container}>
         <Image
           source={{
@@ -89,13 +90,14 @@ export default function UserCard() {
             Number Of Katas Completed: {numKatasCompleted}
           </Text>
           <Text style={styles.topicText}>
-            Katas Completed: {"\n\n > " + kataNamesCompleted.join("\n > ")}
+            Katas Completed: {"\n\n > " + kataNamesCompleted.join("\n\n > ")}
           </Text>
           <Text style={styles.topicText}>
-            Topics Done: {"\n\n > " + topicsDone.join("\n > ")}
+            Topics Done: {"\n\n > " + topicsDone.join("\n\n > ")}
           </Text>
         </View>
       </View>
+      </ScrollView>
     </>
   );
 }
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 3,
     backgroundColor: "#F2F2D0",
+    paddingBottom: 96
   },
   statsContainer: {
     backgroundColor: "#F2F2D0",
