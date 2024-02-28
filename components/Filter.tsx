@@ -2,7 +2,7 @@ import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { getTopics } from "app/api";
-import { useFonts } from 'expo-font';
+import { useFonts } from "expo-font";
 
 const orderByData = [
   { label: "Easiest", value: "easiest" },
@@ -26,12 +26,11 @@ export default function Filter({
   orderValue,
   setOrderValue,
 }: HeaderProps) {
-
   const { topicsData, isLoading, error } = useFetchTopics();
 
   const [fontsLoaded, fontError] = useFonts({
-    'Pixellari': require('../assets/fonts/Pixellari.ttf'),
-    'dogica': require('../assets/fonts/dogica.ttf'),
+    Pixellari: require("../assets/fonts/Pixellari.ttf"),
+    dogica: require("../assets/fonts/dogica.ttf"),
   });
 
   if (!fontsLoaded && !fontError) {
@@ -98,7 +97,7 @@ function useFetchTopics() {
     fetchTopics();
   }, []);
 
- return { topicsData, isLoading, error }
+  return { topicsData, isLoading, error };
 }
 
 const styles = StyleSheet.create({
@@ -106,17 +105,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    backgroundColor: 'transparent',
-    borderColor: 'transparent'
+    backgroundColor: "transparent",
+    borderColor: "transparent",
   },
   dropdown: {
     display: "flex",
     width: "40%",
     marginLeft: 12,
     height: 50,
-    borderBottomColor: "gray",
-    borderBottomWidth: 0.5,
-    fontFamily: "Pixellari", 
+    borderBottomWidth: 0,
+    fontFamily: "Pixellari",
     fontSize: 16,
   },
 });
