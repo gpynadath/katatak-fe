@@ -32,8 +32,8 @@ export default function KataPage() {
   const { kata, isLoading, error }: FetchKata = useFetchKata(activeKata); // this will need to fetch the current kata (perhaps by a context?)
   const [isComplete, setComplete] = useState(false);
 
-  if (error) return <Error />; // Add indepth error handling...
-  if (!kata) return <Error />;
+  if (error && !isLoading) return <Error />; // Add indepth error handling...
+  if (!kata && !isLoading) return <Error />;
 
   return (
     <View style={containerStyles.container}>
