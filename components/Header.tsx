@@ -14,14 +14,14 @@ export default function Header() {
   );
 }
 
-const marginTop = "15%";
+const marginTop = "0%";
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     marginTop: marginTop,
     backgroundColor: "#F2F2D0",
     padding: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.9,
     shadowRadius: 10,
