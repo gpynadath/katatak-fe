@@ -1,18 +1,23 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { getTopics } from "app/api";
+import { useFonts } from 'expo-font';
 
 const orderByData = [
-  { label: "Easiest First", value: "easiest" },
-  { label: "Hardest First", value: "hardest" },
+  { label: "Easiest", value: "easiest" },
+  { label: "Hardest", value: "hardest" },
 ];
 
-type FilterProps = {
+type HeaderProps = {
   topicsValue: string;
   setTopicsValue: React.Dispatch<React.SetStateAction<string>>;
   orderValue: string;
   setOrderValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
+type itemObj = {
+  topic_name: string;
 };
 
 export default function Filter({
@@ -20,25 +25,28 @@ export default function Filter({
   setTopicsValue,
   orderValue,
   setOrderValue,
-}: FilterProps) {
-  type itemObj = {
-    topic_name: string;
-  };
+}: HeaderProps) {
 
-  const [topicsData, setTopicsData] = useState<itemObj[]>([]);
-  useEffect(() => {
-    const fetchTopics = async () => {
-      const data = await getTopics();
-      data.push({ topic_name: "All Topics..." });
-      setTopicsData(data);
-    };
-    fetchTopics();
-  }, []);
+  const { topicsData, isLoading, error } = useFetchTopics();
+
+  const [fontsLoaded, fontError] = useFonts({
+    'Pixellari': require('../assets/fonts/Pixellari.ttf'),
+    'dogica': require('../assets/fonts/dogica.ttf'),
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
+  if (isLoading) return <Text>Loading...</Text>;
+  if (error) return <Text>Error...Filter </Text>; // Add indepth error handling...
+  if (!topicsData) return <Text>Topics not found</Text>;
 
   return (
     <View style={styles.container}>
       <Dropdown
         style={styles.dropdown}
+        fontFamily="Pixellari"
         data={topicsData}
         search
         maxHeight={300}
@@ -53,6 +61,7 @@ export default function Filter({
       />
       <Dropdown
         style={styles.dropdown}
+        fontFamily="Pixellari"
         data={orderByData}
         maxHeight={300}
         labelField="label"
@@ -68,20 +77,46 @@ export default function Filter({
   );
 }
 
-const width = "40%";
+function useFetchTopics() {
+  const [topicsData, setTopicsData] = useState<itemObj[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const fetchTopics = async () => {
+    try {
+      const data = await getTopics();
+      //data.push({ topic_name: "All Topics..." });
+      setTopicsData(data);
+      setError(null);
+    } catch (err: any) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTopics();
+  }, []);
+
+ return { topicsData, isLoading, error }
+}
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
   },
   dropdown: {
     display: "flex",
-    width: width,
-    margin: 16,
+    width: "40%",
+    marginLeft: 12,
     height: 50,
     borderBottomColor: "gray",
     borderBottomWidth: 0.5,
+    fontFamily: "Pixellari", 
+    fontSize: 16,
   },
 });

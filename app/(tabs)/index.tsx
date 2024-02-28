@@ -1,5 +1,6 @@
 import Header from "components/Header";
 import KataList from "components/KataList";
+import FilterManager from "components/FilterManager";
 import { ScrollView, Text, View } from "react-native";
 import { useContext, useState } from "react";
 import CurrentUserContext from "app/context/UserContext";
@@ -10,11 +11,12 @@ export default function Page() {
   const [orderValue, setOrderValue] = useState<string>("");
   return (
     <ScrollView>
-      <Header
+      <Header/>
+      <FilterManager 
         topicsValue={topicsValue}
         setTopicsValue={setTopicsValue}
         orderValue={orderValue}
-        setOrderValue={setOrderValue}
+        setOrderValue={setOrderValue} 
       />
       <KataList topicsValue={topicsValue} orderValue={orderValue} />
     </ScrollView>
