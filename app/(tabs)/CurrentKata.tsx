@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
-import KataPage from 'app/kata-page/KataPage';
+import KataPage from "app/kata-page/KataPage";
 import { useContext } from "react";
 import CurrentUserContext from "app/context/UserContext";
 

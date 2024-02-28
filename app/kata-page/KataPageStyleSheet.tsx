@@ -1,20 +1,28 @@
 import { StyleSheet, View, Text, Button } from "react-native";
 
 export const styles = StyleSheet.create({
+  
   baseText: {
     padding: 10,
+    fontFamily:"Pixellari",
+    fontSize:20,
   },
   titleText: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     padding: 10,
+    fontFamily:"dogica"
   },
   submitButton: {
-    width: "100%",
+    fontFamily: "Pixellari",
+    fontSize: 25,
+    width:"100%",
     justifyContent: "center",
     alignItems: "center",
+    textAlign:"center",
     padding: 10,
+    borderWidth:2,
   },
   codeEditor: {
     flex: 1,
@@ -62,6 +70,13 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "center",
+  },
+  keywordButtonStyles:{
+    fontFamily:"Annoymous",
+    fontSize:15,
+    borderWidth:2,
+    padding:4,
+    margin:3,
   },
   outputContainer: {
     flex: 1,

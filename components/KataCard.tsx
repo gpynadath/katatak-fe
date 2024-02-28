@@ -39,11 +39,8 @@ export default function KataCard({
   const [fontsLoaded, fontError] = useFonts({
     Pixellari: require("../assets/fonts/Pixellari.ttf"),
     dogica: require("../assets/fonts/dogica.ttf"),
+    Annoymous: require("../assets/fonts/Anonymous_Pro.ttf"),
   });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   const selectKata = () => {
     router.push("/CurrentKata");
