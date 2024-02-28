@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "app/context/UserContext";
 import { getSolutionsByUserId, getKata } from "app/api";
 import { useFonts } from "expo-font";
-import Loading from "./Loading";
+import Loading from "../../loadingAndErrors/Loading";
 import { Dimensions } from "react-native";
+import { styles } from "./userPageStylesheet";
 
 type solutionObj = {
   kata_id: number;
@@ -65,8 +66,8 @@ export default function UserCard() {
   }, []);
 
   const [fontsLoaded, fontError] = useFonts({
-    Pixellari: require("../assets/fonts/Pixellari.ttf"),
-    dogica: require("../assets/fonts/dogica.ttf"),
+    Pixellari: require("../../assets/fonts/Pixellari.ttf"),
+    dogica: require("../../assets/fonts/dogica.ttf"),
   });
 
   if (!fontsLoaded && !fontError) {
@@ -104,52 +105,52 @@ export default function UserCard() {
   );
 }
 
-const marginTop = "10%";
-let ScreenHeight = Dimensions.get("window").height;
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "#F2F2D0",
-    height: ScreenHeight,
-  },
-  statsContainer: {
-    backgroundColor: "#F2F2D0",
-    textAlign: "left",
-  },
-  usernameHeader: {
-    fontFamily: "Pixellari",
-    fontSize: 25,
-    marginLeft: 17,
-    marginRight: 17,
-    marginTop: 10,
-  },
-  img: {
-    padding: 50,
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    marginTop: marginTop,
-    marginBottom: 15,
-  },
-  bio: {
-    margin: 20,
-    fontFamily: "Pixellari",
-    fontSize: 15,
-    marginBottom: 30,
-  },
-  topicText: {
-    fontFamily: "dogica",
-    fontSize: 9,
-    marginBottom: 15,
+//const marginTop = "10%";
+//let ScreenHeight = Dimensions.get("window").height;
+// const styles = StyleSheet.create({
+//   container: {
+//     display: "flex",
+//     alignItems: "center",
+//     flex: 1,
+//     backgroundColor: "#F2F2D0",
+//     height: ScreenHeight,
+//   },
+//   statsContainer: {
+//     backgroundColor: "#F2F2D0",
+//     textAlign: "left",
+//   },
+//   usernameHeader: {
+//     fontFamily: "Pixellari",
+//     fontSize: 25,
+//     marginLeft: 17,
+//     marginRight: 17,
+//     marginTop: 10,
+//   },
+//   img: {
+//     padding: 50,
+//     height: 200,
+//     width: 200,
+//     borderRadius: 100,
+//     marginTop: marginTop,
+//     marginBottom: 15,
+//   },
+//   bio: {
+//     margin: 20,
+//     fontFamily: "Pixellari",
+//     fontSize: 15,
+//     marginBottom: 30,
+//   },
+//   topicText: {
+//     fontFamily: "dogica",
+//     fontSize: 9,
+//     marginBottom: 15,
 
-    padding: 5,
-  },
-  content: {
-    marginLeft: 10,
-  },
-  footer: {
-    alignItems: "center",
-  },
-});
+//     padding: 5,
+//   },
+//   content: {
+//     marginLeft: 10,
+//   },
+//   footer: {
+//     alignItems: "center",
+//   },
+// });

@@ -92,7 +92,4 @@ export const styles = StyleSheet.create({
   kataPageScrollContainer: {
     alignItems: "center",
   },
-  homePageScrollContainer: {
-    marginTop: "8%",
-  },
 });
