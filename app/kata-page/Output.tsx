@@ -1,5 +1,5 @@
-import { View, Text, Button, StyleSheet, Image, ImageBackground, ScrollView } from "react-native";
-import { useState, useEffect, SetStateAction, Dispatch } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { useState, useEffect } from "react";
 import { postKata } from "../api";
 import { styles } from "./KataPageStyleSheet";
 import TestResult from "./TestResult";
@@ -13,7 +13,6 @@ interface Output {
 
 interface SendInput {
   output: Output | undefined;
-  setOutput: Dispatch<SetStateAction<Output | undefined>>;
   isLoading: boolean;
   error: any;
 }
@@ -24,15 +23,6 @@ interface individualTestObj {
   logs: Array<string>;
 }
 
-const outputImg = {
-  top: require('../../assets/output_top.png'),
-  center: require('../../assets/output_center.png'),
-  bottom: require('../../assets/output_bottom.png')
-}
-
-const boxWidth = 230 * 1.5;
-const boxHeight = 26 * 1.5;
-
 export default function Output({
   kata_id,
   input,
@@ -40,105 +30,43 @@ export default function Output({
   kata_id: number;
   input: string;
 }) {
-
   const formattedStr: string = input.replaceAll('"', "'");
-  const { output, setOutput, isLoading, error }: SendInput = useSendInput(
+  const { output, isLoading, error }: SendInput = useSendInput(
     kata_id,
     formattedStr.trim()
   );
 
-  useEffect(() => {
-    setOutput({
-      success: false,
-      test_results: [],
-      logs: [],
-      posted_solution: false,
-    }) // require to reset output between submits
-  }, [input])
-
-  //console.log(output.logs, "<<< output.logs");
-
-  const getConsoleOutput = (output : Output | undefined, isLoading : boolean, error : any) => {
-    if (isLoading && input === "Default")
+  if (isLoading && input === "Default")
     return (
-      <Text style={styles.outcomeText}>
-        Click submit to check your solution!
+      <Text style={styles.baseText}>
+        Submit your function to pass the tests!
       </Text>
     );
-    if (isLoading && input !== "Default")
-      return (
-        <Text style={styles.outcomeText}>
-          Testing your code (this might take a moment)...
-        </Text>
-      );
-    if (error) return <Text style={styles.outcomeText}>Error...Solution </Text>; // Add indepth error handling...
-    if (!output) return <Text style={styles.outcomeText}>No Output</Text>;
-
+  if (isLoading && input !== "Default")
     return (
-      <>
-        <Text style={styles.outcomeText}>{output.success ? "SUCCESS" : "FAIL"}</Text>
-                    {output.test_results.map((result: individualTestObj) => {
-                      return (
-                        <TestResult
-                          key={result.description}
-                          description={result.description}
-                          pass={result.pass}
-                          logs={result.logs}
-                        />
-                      );
-                    })}
-      </>
-    )
-  }
-
+      <Text style={styles.baseText}>
+        Testing your code (this might take a moment)...
+      </Text>
+    );
+  if (error) return <Text>Error...Solution </Text>; // Add indepth error handling...
+  if (!output) return <Text>No Output</Text>;
+  //console.log(output.logs, "<<< output.logs");
   return (
-    <ScrollView contentContainerStyle={outputBox.box}>
-      <ImageBackground source={outputImg.top} style={outputBox.top} resizeMode="cover">
-        <Text style={styles.consoleText}>Console</Text>
-      </ImageBackground>
-          <ImageBackground source={outputImg.center}  style={centerStyle(output)} resizeMode="stretch">
-            {getConsoleOutput(output, isLoading, error)}
-          </ImageBackground>
-      <ImageBackground source={outputImg.bottom}  style={outputBox.bottom} resizeMode="cover"/>
-    </ScrollView>
+    <View style={styles.outputContainer}>
+      <Text style={styles.baseText}>{output.success ? "SUCCESS" : "FAIL"}</Text>
+      {output.test_results.map((result: individualTestObj) => {
+        return (
+          <TestResult
+            key={result.description}
+            description={result.description}
+            pass={result.pass}
+            logs={result.logs}
+          />
+        );
+      })}
+    </View>
   );
 }
-
-const centerStyle =(output : Output | undefined) => {
-// test_results[x].logs[]
-  let sum : number = 0;
-
-  if(output !== undefined && output.test_results !== undefined) {
-    for(let i=0; i < output?.test_results.length; i++) {
-      if(output?.test_results[i].logs !== undefined) {
-        sum += output?.test_results[i].logs.length;
-      }
-    }
-  }
-
-  return {
-    width: boxWidth,
-    height: (120 * (output?.test_results === undefined ? 1 : output.test_results.length)) + (50 * sum)
-  }
-}
-
-const outputBox = StyleSheet.create({
-  box: {
-    paddingBottom: 50,
-    alignItems: "center"
-  },
-  top: {
-    width: boxWidth,
-    height: boxHeight,
-  },
-  center: {
-    width: boxWidth,
-  },
-  bottom: {
-    width: boxWidth,
-    height: boxHeight,
-  }
-})
 
 function useSendInput(kata_id: number, input: string) {
   const [output, setOutput] = useState<Output>();
@@ -164,5 +92,5 @@ function useSendInput(kata_id: number, input: string) {
     }
   }, [input]);
 
-  return { output, setOutput, isLoading, error };
+  return { output, isLoading, error };
 }
