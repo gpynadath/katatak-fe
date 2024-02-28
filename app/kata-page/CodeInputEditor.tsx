@@ -29,86 +29,86 @@ export default function CodeInputEditor({
   );
 
   return (
-    <View>
+    <>
       <View style={styles.codeEditor}>
-      <View style={styles.keyWordButtons}>
-        <Button
-          title="const"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "const " +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 6);
-          }}
-        />
-        <Button
-          title="let"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "let " +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 4);
-          }}
-        />
-        <Button
-          title="return"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "return " +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 7);
-          }}
-        />
-        <Button
-          title="[ ]"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "[]" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
-        <Button
-          title="( )"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "()" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
-        <Button
-          title="{ }"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "{}" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
-        <Button
-          title="' '"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "\'\'" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
+        <View style={styles.keyWordButtons}>
+          <Button
+            title="const"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "const " +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 6);
+            }}
+          />
+          <Button
+            title="let"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "let " +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 4);
+            }}
+          />
+          <Button
+            title="return"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "return " +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 7);
+            }}
+          />
+          <Button
+            title="[ ]"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "[]" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          />
+          <Button
+            title="( )"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "()" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          />
+          <Button
+            title="{ }"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "{}" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          />
+          <Button
+            title="' '"
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "''" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          />
         </View>
         <CodeEditor
           style={getEditorStyle()}
@@ -125,7 +125,7 @@ export default function CodeInputEditor({
       <View style={styles.submitButton}>
         <Button title="Submit" onPress={() => setInput(value)} />
       </View>
-    </View>
+    </>
   );
 }
 
@@ -135,8 +135,9 @@ function getEditorStyle() {
 
   return {
     ...{
-      fontSize: 20,
-      width: 300,
+      flex: 1,
+      fontSize: 17,
+      width: 360,
       height: 300,
       inputLineHeight: 26,
       highlighterLineHeight: 26,

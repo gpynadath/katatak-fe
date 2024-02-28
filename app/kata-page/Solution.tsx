@@ -3,10 +3,12 @@ import Output from "./Output";
 
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { styles } from "./KataPageStyleSheet";
 
 interface Solution {
   kata_id: number;
   setComplete: Dispatch<SetStateAction<boolean>>;
+  function_template: string;
 }
 
 export default function Solution({
@@ -17,7 +19,7 @@ export default function Solution({
   const [input, setInput] = useState("Default");
 
   return (
-    <View>
+    <View style={styles.outputContainer}>
       <CodeInputEditor
         setInput={setInput}
         function_template={function_template}

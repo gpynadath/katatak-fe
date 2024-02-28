@@ -17,20 +17,18 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   codeEditor: {
-    width: "100%",
+    flex: 1,
+    width: 360,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-  },
-  outputContainer: {
-    alignItems: "center",
   },
   testContainer: {
     minHeight: 60,
     flex: 1,
     flexDirection: "row",
     marginBottom: 15,
-    width: 300,
+    width: 330,
   },
   testContainerSmall: {
     alignItems: "center",
@@ -46,7 +44,7 @@ export const styles = StyleSheet.create({
     height: "auto",
     fontSize: 16,
     paddingLeft: 10,
-    maxWidth: 250,
+    maxWidth: 270,
   },
   logsContainer: {
     width: 300,
@@ -59,10 +57,20 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     maxWidth: 200,
   },
-    keyWordButtons: {
-      display: 'flex',
-      flexDirection: 'row',
-      width: '100%',
-      justifyContent: 'center',
-    }
-  });
+  keyWordButtons: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+  },
+  outputContainer: {
+    flex: 1,
+    width: 360,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  kataPageScrollContainer: {
+    alignItems: "center",
+  },
+});
