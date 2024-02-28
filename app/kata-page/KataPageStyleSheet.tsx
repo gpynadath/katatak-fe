@@ -6,6 +6,19 @@ export const styles = StyleSheet.create({
     fontFamily: "Pixellari",
     fontSize: 20,
   },
+  outcomeText: {
+    padding: 10,
+    fontFamily: "Pixellari",
+    fontSize: 20,
+    color: "white"
+  },
+  consoleText: {
+    marginTop: 15,
+    marginLeft: 10,
+    fontFamily: "dogica",
+    fontSize: 8,
+    color: "white"
+  },
   titleText: {
     fontSize: 20,
     fontWeight: "bold",
@@ -52,21 +65,25 @@ export const styles = StyleSheet.create({
     height: 40,
   },
   testDescription: {
+    fontFamily: "Pixellari",
     height: "auto",
     fontSize: 16,
     paddingLeft: 10,
     maxWidth: 270,
+    color: "white"
   },
   logsContainer: {
     width: 300,
     paddingVertical: 10,
-    backgroundColor: "grey",
     marginBottom: 10,
   },
   logText: {
     paddingLeft: 50,
-    paddingVertical: 10,
+    paddingVertical: 8,
     maxWidth: 200,
+    fontSize: 8,
+    fontFamily: "dogica",
+    color: "white",
   },
   keyWordButtons: {
     display: "flex",
