@@ -6,6 +6,7 @@ import { getKata } from "../api";
 import { ActiveKataContext } from "../context/ActiveKata";
 import Loading from "components/Loading";
 import { styles } from "./KataPageStyleSheet";
+import Error from "components/Error";
 
 interface Kata {
   kata_id: number;
@@ -31,8 +32,8 @@ export default function KataPage() {
   const { kata, isLoading, error }: FetchKata = useFetchKata(activeKata); // this will need to fetch the current kata (perhaps by a context?)
   const [isComplete, setComplete] = useState(false);
 
-  if (error) return <Text>Error...Katapage </Text>; // Add indepth error handling...
-  if (!kata) return <Text>Kata not found</Text>;
+  if (error) return <Error />; // Add indepth error handling...
+  if (!kata) return <Error />;
 
   return (
     <View style={containerStyles.container}>
