@@ -34,9 +34,9 @@ export default function TestResult({ pass, description, logs }: result) {
       {logs.length > 0 ? (
         <View style={styles.logsContainer}>
           <Text style={styles.testDescription}>console.logs: </Text>
-          {logs.map((log: string) => {
+          {logs.map((log: string, index) => {
             return (
-              <Text key={Math.random()} style={styles.logText}>
+              <Text key={index} style={styles.logText}>
                 {log}
               </Text>
             );
