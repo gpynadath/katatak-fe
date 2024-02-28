@@ -1,15 +1,15 @@
 # Katatak
 
-## Sumary
+## Summary
 
-Designed for aspiring and professional devs in mind, Katatak helps you build a coding practise habit from the convenience of an App. Each code challenge, or 'kata', is solved by passing all of the given tests.
+Designed for aspiring and professional devs in mind, Katatak helps you build a coding practise habit from the convenience of a mobile app. Each code challenge, or 'kata', is solved by passing all of the given tests.
 
-Testing the users submitted solution code for each Kata is carried out client-side - more information about this in our backend Katatak API...
+Testing the users submitted solution code for each Kata is carried out server-side - more information about this in the README of our backend Katatak API...
 
 ### Katatak API
 
 The hosted backend API can be found here: https://katatak.onrender.com/api/
-And the repo for the backend is here: https://github.com/pigeonwatcher/katatak-be
+The repo for the backend is here: https://github.com/pigeonwatcher/katatak-be
 
 ### The App
 
@@ -18,7 +18,7 @@ The work in this repo represents the front end of the prototype of the MVP for t
 The front end of this project is built in React Native with Expo Go. The language used is Typescript.
 Additional libraries and packages used include Axios for making HTTP requests to the Katatak API, and the React Native Code Editor (https://github.com/RivasCVA/react-native-code-editor) for the code solution input.
 
-### The Minimum Viable Product features implemented
+### The Minimum Viable Product features implemented:
 
 - A home page with a list of Katas to chose from to try solving (currently 11 example javascript katas provided for demonstration purposes).
 - Ability to order the katas from easiest-hardest (or vice versa) and sort by topic (such as 'string manipulation')
@@ -40,17 +40,17 @@ Recommended minimum version of node: v20.8.0
 
 In the command line, start by navigating to the directory where you wish to clone the repo.
 
-Run `git clone https://github.com/gpynadath/katatak-fe.git`
+Run the command `git clone https://github.com/gpynadath/katatak-fe.git` to clone this repo.
 
 #### Ensure you have all the required npm packages installed
 
 Move into the root directory of the cloned repo.
 
-Run `cd katatak fe`
+Run the command `cd katatak fe` to move into the cloned repo.
 
 Install the packages.
 
-Run `npm install`
+Run `npm install` to install the dependent packages.
 
 #### Start the app with Expo CLI
 
