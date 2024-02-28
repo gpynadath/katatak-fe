@@ -2,9 +2,10 @@ import { ScrollView, View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import KataCard from "./KataCard";
 import CurrentUserContext from "app/context/UserContext";
-import Loading from "./Loading";
+import Loading from "../../loading-and-errors/Loading";
 import { getAllKatas, getSolutionsByUserId } from "app/api";
 import currentKata from "app/(tabs)/CurrentKata";
+import { styles } from "app/index-page/indexPageStylesheet";
 
 type KataListProps = {
   topicsValue: string;
@@ -61,7 +62,7 @@ export default function KataList({ topicsValue, orderValue }: KataListProps) {
   if (isLoading) return <Loading />;
   return (
     <ScrollView>
-      <View style={styles.container}>
+      <View style={styles.katasContainer}>
         {kataData.map((kata) => {
           let solved = false;
           if (usersSolvedKatas.includes(kata.kata_id)) {
@@ -73,9 +74,3 @@ export default function KataList({ topicsValue, orderValue }: KataListProps) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#F2F2D0",
-  },
-});

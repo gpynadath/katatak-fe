@@ -24,10 +24,15 @@ export default function CodeInputEditor({
     ) +
     "\n\n}";
   const [code, setCode] = useState(formattedTemplate);
+  const [pressed, setPressed] = useState<boolean>(false);
   const [value, setValue] = useState<string>(formattedTemplate);
   const [cursorPosition, setCursorPosition] = useState<number>(
     formattedTemplate.indexOf("here")
   );
+
+  useEffect(() => {
+    setPressed(false);
+  }, [value]);
 
   return (
     <>
@@ -124,15 +129,26 @@ export default function CodeInputEditor({
           syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
           initialValue={code}
           showLineNumbers
-          onChange={(data) => setValue(data)}
+          onChange={(data) => {
+            setValue(data);
+          }}
           value={value}
           setValue={setValue}
           setCursorPosition={setCursorPosition}
         />
       </View>
       <View>
-        <Pressable onPress={() => setInput(value)}>
-          <Text style={styles.submitButton}>Submit</Text>
+        <Pressable
+          onPress={() => {
+            setInput(value);
+            setPressed(true);
+          }}
+        >
+          <Text
+            style={pressed ? styles.submitButtonPressed : styles.submitButton}
+          >
+            Submit
+          </Text>
         </Pressable>
       </View>
     </>

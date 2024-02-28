@@ -1,8 +1,9 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { getTopics } from "app/api";
 import { useFonts } from "expo-font";
+import { styles } from "../../app/index-page/indexPageStylesheet";
 
 const orderByData = [
   { label: "Easiest", value: "easiest" },
@@ -29,8 +30,8 @@ export default function Filter({
   const { topicsData, isLoading, error } = useFetchTopics();
 
   const [fontsLoaded, fontError] = useFonts({
-    Pixellari: require("../assets/fonts/Pixellari.ttf"),
-    dogica: require("../assets/fonts/dogica.ttf"),
+    Pixellari: require("../../assets/fonts/Pixellari.ttf"),
+    dogica: require("../../assets/fonts/dogica.ttf"),
   });
 
   if (!fontsLoaded && !fontError) {
@@ -42,7 +43,7 @@ export default function Filter({
   if (!topicsData) return <Text>Topics not found</Text>;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.filter}>
       <Dropdown
         style={styles.dropdown}
         fontFamily="Pixellari"
@@ -83,7 +84,7 @@ function useFetchTopics() {
   const fetchTopics = async () => {
     try {
       const data = await getTopics();
-      //data.push({ topic_name: "All Topics..." });
+      data.unshift({ topic_name: "All Topics..." });
       setTopicsData(data);
       setError(null);
     } catch (err: any) {
@@ -99,25 +100,3 @@ function useFetchTopics() {
 
   return { topicsData, isLoading, error };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    backgroundColor: "transparent",
-    borderColor: "transparent",
-    width: "100%",
-  },
-  dropdown: {
-    display: "flex",
-    width: "42%",
-    marginLeft: 12,
-    marginTop: 0,
-    height: 50,
-    borderBottomWidth: 0,
-    fontFamily: "Pixellari",
-    fontSize: 16,
-  },
-});

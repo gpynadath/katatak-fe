@@ -39,6 +39,20 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     backgroundColor: "#FFCD6B",
   },
+  submitButtonPressed: {
+    fontFamily: "Pixellari",
+    color: "#3b3b3b",
+    fontSize: 25,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: 10,
+    marginTop: "5%",
+    borderWidth: 2,
+    borderColor: "#3b3b3b",
+    backgroundColor: "#D8AC5B",
+  },
   codeEditor: {
     flex: 1,
     width: 360,
@@ -108,8 +122,5 @@ export const styles = StyleSheet.create({
   },
   kataPageScrollContainer: {
     alignItems: "center",
-  },
-  homePageScrollContainer: {
-    marginTop: "8%",
   },
 });

@@ -1,6 +1,6 @@
-import FilterToggleButton from "./FilterToggleButton";
 import Filter from "./Filter";
-import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
+import { View, ImageBackground } from "react-native";
+import { styles } from "./indexPageStylesheet";
 
 type HeaderProps = {
   topicsValue: string;
@@ -16,11 +16,11 @@ export default function FilterManager({
   setOrderValue,
 }: HeaderProps) {
   return (
-    <View style={{ backgroundColor: "#F2F2D0" }}>
+    <View style={styles.filterContainer}>
       <ImageBackground
         style={styles.bar}
         resizeMode="contain"
-        source={require("../assets/filterbar.png")}
+        source={require("../../assets/filterbar.png")}
       >
         <Filter
           topicsValue={topicsValue}
@@ -32,15 +32,3 @@ export default function FilterManager({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  bar: {
-    width: 228 * 1.5,
-    height: 26 * 1.5,
-    alignSelf: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    marginTop: 10,
-    marginBottom: 0,
-  },
-});

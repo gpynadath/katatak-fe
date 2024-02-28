@@ -1,10 +1,10 @@
-import Header from "components/Header";
-import KataList from "components/KataList";
-import FilterManager from "components/FilterManager";
-import { ScrollView, Text, View } from "react-native";
+import Header from "../index-page/Header";
+import KataList from "../index-page/KataList";
+import FilterManager from "../index-page/FilterManager";
+import { ScrollView } from "react-native";
 import { useContext, useState } from "react";
 import CurrentUserContext from "app/context/UserContext";
-import { styles } from "../kata-page/KataPageStyleSheet";
+import { styles } from "../index-page/indexPageStylesheet";
 
 export default function Page() {
   const currentUser = useContext(CurrentUserContext);
