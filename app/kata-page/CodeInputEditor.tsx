@@ -1,5 +1,6 @@
-import { View, Text, Button, Pressable } from "react-native";
+import { View, Text, Button, Pressable, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 import { useKeyboard } from "@react-native-community/hooks";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CodeEditor, {
@@ -31,84 +32,91 @@ export default function CodeInputEditor({
   return (
     <View>
       <View style={styles.codeEditor}>
-      <View style={styles.keyWordButtons}>
-        <Button
-          title="const"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "const " +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 6);
-          }}
-        />
-        <Button
-          title="let"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "let " +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 4);
-          }}
-        />
-        <Button
-          title="return"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "return " +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 7);
-          }}
-        />
-        <Button
-          title="[ ]"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "[]" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
-        <Button
-          title="( )"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "()" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
-        <Button
-          title="{ }"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "{}" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
-        <Button
-          title="' '"
-          onPress={(event) => {
-            setValue(
-              value.slice(0, cursorPosition) +
-                "\'\'" +
-                value.slice(cursorPosition, value.length)
-            );
-            setCursorPosition(cursorPosition + 2);
-          }}
-        />
+        <View style={styles.keyWordButtons}>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "const " +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 6);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>const</Text>
+          </Pressable>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "let " +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 4);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>let</Text>
+          </Pressable>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "return " +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 7);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>return</Text>
+          </Pressable>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "[]" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>[ ]</Text>
+          </Pressable>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "()" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>( )</Text>
+          </Pressable>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "{}" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>&#123; &#125;</Text>
+          </Pressable>
+          <Pressable
+            onPress={(event) => {
+              setValue(
+                value.slice(0, cursorPosition) +
+                  "''" +
+                  value.slice(cursorPosition, value.length)
+              );
+              setCursorPosition(cursorPosition + 2);
+            }}
+          >
+            <Text style={styles.keywordButtonStyles}>"' '"</Text>
+          </Pressable>
         </View>
         <CodeEditor
           style={getEditorStyle()}
@@ -122,8 +130,10 @@ export default function CodeInputEditor({
           setCursorPosition={setCursorPosition}
         />
       </View>
-      <View style={styles.submitButton}>
-        <Button title="Submit" onPress={() => setInput(value)} />
+      <View>
+        <Pressable onPress={() => setInput(value)}>
+          <Text style={styles.submitButton}>Submit</Text>
+        </Pressable>
       </View>
     </View>
   );
