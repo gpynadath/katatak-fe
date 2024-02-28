@@ -77,7 +77,7 @@ function useFetchKata(kata_id: number) {
   return { kata, isLoading, error };
 }
 
-const marginTop = "15%";
+const marginTop = "8%";
 const containerStyles = StyleSheet.create({
   container: {
     marginTop: marginTop,
