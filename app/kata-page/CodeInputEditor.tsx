@@ -142,16 +142,5 @@ function getEditorStyle() {
       inputLineHeight: 26,
       highlighterLineHeight: 26,
     },
-    ...(keyboard.keyboardShown
-      ? { marginBottom: keyboard.keyboardHeight - insets.bottom }
-      : {}),
   };
 }
-
-// function handleKeyWordPress(value: string, code: string, setCode){
-//   console.log(value)
-//   console.log(code)
-//   const insertedCode = code + value;
-//   setCode(insertedCode);
-//   console.log(code)
-// }
