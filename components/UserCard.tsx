@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "app/context/UserContext";
 import { getSolutionsByUserId, getKata } from "app/api";
 import { useFonts } from "expo-font";
+import Loading from "./Loading";
+import { Dimensions } from "react-native";
 
 type solutionObj = {
   kata_id: number;
@@ -71,45 +73,46 @@ export default function UserCard() {
     return null;
   }
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <Loading />;
   return (
     <>
-    <ScrollView>
-      <View style={styles.container}>
-        <Image
-          source={{
-            uri: currentUser.avatar_img_url,
-          }}
-          alt={`${currentUser.username}'s avatar`}
-          style={styles.img}
-        />
-        <Text style={styles.usernameHeader}>{currentUser.username}</Text>
-        <Text style={styles.bio}>"{currentUser.bio}"</Text>
-        <View style={styles.statsContainer}>
-          <Text style={styles.topicText}>
-            Number Of Katas Completed: {numKatasCompleted}
-          </Text>
-          <Text style={styles.topicText}>
-            Katas Completed: {"\n\n > " + kataNamesCompleted.join("\n\n > ")}
-          </Text>
-          <Text style={styles.topicText}>
-            Topics Done: {"\n\n > " + topicsDone.join("\n\n > ")}
-          </Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <Image
+            source={{
+              uri: currentUser.avatar_img_url,
+            }}
+            alt={`${currentUser.username}'s avatar`}
+            style={styles.img}
+          />
+          <Text style={styles.usernameHeader}>{currentUser.username}</Text>
+          <Text style={styles.bio}>"{currentUser.bio}"</Text>
+          <View style={styles.statsContainer}>
+            <Text style={styles.topicText}>
+              Number Of Katas Completed: {numKatasCompleted}
+            </Text>
+            <Text style={styles.topicText}>
+              Katas Completed: {"\n\n > " + kataNamesCompleted.join("\n\n > ")}
+            </Text>
+            <Text style={styles.topicText}>
+              Topics Done: {"\n\n > " + topicsDone.join("\n\n > ")}
+            </Text>
+          </View>
         </View>
-      </View>
       </ScrollView>
     </>
   );
 }
 
 const marginTop = "10%";
+let ScreenHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "center",
-    flex: 3,
+    flex: 1,
     backgroundColor: "#F2F2D0",
-    paddingBottom: 96
+    height: ScreenHeight,
   },
   statsContainer: {
     backgroundColor: "#F2F2D0",
