@@ -8,16 +8,16 @@ export const styles = StyleSheet.create({
   },
   outcomeText: {
     padding: 10,
-    fontFamily: "Pixellari",
+    fontFamily: "Annoymous",
     fontSize: 20,
-    color: "white"
+    color: "white",
   },
   consoleText: {
     marginTop: 15,
     marginLeft: 10,
     fontFamily: "dogica",
-    fontSize: 8,
-    color: "white"
+    fontSize: 12,
+    color: "white",
   },
   titleText: {
     fontSize: 20,
@@ -78,12 +78,12 @@ export const styles = StyleSheet.create({
     height: 40,
   },
   testDescription: {
-    fontFamily: "Pixellari",
+    fontFamily: "Annoymous",
     height: "auto",
     fontSize: 16,
     paddingLeft: 10,
     maxWidth: 270,
-    color: "white"
+    color: "white",
   },
   logsContainer: {
     width: 300,
@@ -94,8 +94,8 @@ export const styles = StyleSheet.create({
     paddingLeft: 50,
     paddingVertical: 8,
     maxWidth: 200,
-    fontSize: 8,
-    fontFamily: "dogica",
+    fontSize: 14,
+    fontFamily: "Annoymous",
     color: "white",
   },
   keyWordButtons: {
