@@ -3,18 +3,9 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import { useContext } from "react";
-import { useFonts } from "expo-font";
 import CurrentUserContext from "app/context/UserContext";
 
 export default function TabsLayout() {
-  const [fontsLoaded, fontError] = useFonts({
-    Pixellari: require("../../assets/fonts/Pixellari.ttf"),
-    dogica: require("../../assets/fonts/dogica.ttf"),
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
   const currentUser = useContext(CurrentUserContext);
   return (
     <Tabs sceneContainerStyle={{ backgroundColor: "#F2F2D0" }}>
@@ -28,10 +19,6 @@ export default function TabsLayout() {
           tabBarActiveBackgroundColor: "#FFCD6B",
           tabBarActiveTintColor: "black",
           tabBarInactiveTintColor: "black",
-          tabBarLabelStyle: {
-            fontFamily: "dogica",
-            marginBottom: 5,
-          },
         }}
       />
       <Tabs.Screen
@@ -46,10 +33,6 @@ export default function TabsLayout() {
           tabBarActiveBackgroundColor: "#FFCD6B",
           tabBarActiveTintColor: "black",
           tabBarInactiveTintColor: "black",
-          tabBarLabelStyle: {
-            fontFamily: "dogica",
-            marginBottom: 5,
-          },
         }}
       />
       <Tabs.Screen
@@ -62,10 +45,6 @@ export default function TabsLayout() {
           tabBarActiveBackgroundColor: "#FFCD6B",
           tabBarActiveTintColor: "black",
           tabBarInactiveTintColor: "black",
-          tabBarLabelStyle: {
-            fontFamily: "dogica",
-            marginBottom: 5,
-          },
         }}
       />
     </Tabs>
