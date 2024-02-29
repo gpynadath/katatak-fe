@@ -47,6 +47,11 @@ export const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderColor: "transparent",
   },
+  filterLoading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   dropdown: {
     display: "flex",
     width: "40%",
