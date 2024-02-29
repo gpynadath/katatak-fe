@@ -38,7 +38,7 @@ export default function Filter({
     return null;
   }
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <View style={[styles.filter, styles.filterLoading]}><Text>Loading...</Text></View>;
   if (error) return <Text>Error...Filter </Text>; // Add indepth error handling...
   if (!topicsData) return <Text>Topics not found</Text>;
 
