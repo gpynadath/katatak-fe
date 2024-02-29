@@ -33,13 +33,13 @@ interface individualTestObj {
 }
 
 const outputImg = {
-  top: require("../../assets/output_top.png"),
-  center: require("../../assets/output_center.png"),
-  bottom: require("../../assets/output_bottom.png"),
+  top: require("../../assets/output_top_new.png"),
+  center: require("../../assets/output_center_new.png"),
+  bottom: require("../../assets/output_bottom_new.png"),
 };
 
-const boxWidth = 230 * 1.5;
-const boxHeight = 26 * 1.5;
+const boxWidth = 345;
+const boxHeight = 39;
 
 export default function Output({
   kata_id,

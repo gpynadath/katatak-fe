@@ -20,7 +20,7 @@ export default function FilterManager({
       <ImageBackground
         style={styles.bar}
         resizeMode="contain"
-        source={require("../../assets/filterbar.png")}
+        source={require("../../assets/filterbar_new.png")}
       >
         <Filter
           topicsValue={topicsValue}
