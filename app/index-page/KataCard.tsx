@@ -16,9 +16,9 @@ type kataObj = {
 let colour = "red";
 
 const imagePath = {
-  hard: require("../../assets/card_h.png"),
-  medium: require("../../assets/card_m.png"),
-  easy: require("../../assets/card_e.png"),
+  hard: require("../../assets/card_h_new.png"),
+  medium: require("../../assets/card_m_new.png"),
+  easy: require("../../assets/card_e_new.png"),
 };
 
 export default function KataCard({

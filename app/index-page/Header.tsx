@@ -1,7 +1,7 @@
 import { View, Image } from "react-native";
 import React, { useState } from "react";
 import { styles } from "../index-page/indexPageStylesheet";
-import katatakLogo from "../../assets/katatak_logo.png";
+import katatakLogo from "../../assets/katatak_logo-v3.png";
 
 export default function Header() {
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
