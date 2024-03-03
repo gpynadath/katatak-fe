@@ -1,18 +1,21 @@
-import { createContext } from "react";
+import { useState, useEffect, createContext, Dispatch, SetStateAction, ReactNode } from 'react';
 
-type UserType = {
-  user_id: number;
-  username: string;
-  bio: string;
-  avatar_img_url: string;
-};
-
-const CurrentUserContext = createContext<UserType>({
-  username: "freezypop",
-  user_id: 1,
-  bio: "I like to sit in the fridge making sick burns about the maternal figure in your life.",
-  avatar_img_url:
-    "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f",
+interface UserContextType {
+  currentUser: number;
+  setCurrentUser: Dispatch<SetStateAction<number>>;
+}
+  
+export const CurrentUserContext = createContext<UserContextType>({
+  currentUser: 0,
+  setCurrentUser: () => {},
 });
 
-export default CurrentUserContext;
+export const CurrentUserProvider = ({ children } : { children: ReactNode }) => {
+    const [currentUser, setCurrentUser] = useState<number>(3);
+
+    return (
+        <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
+        {children}
+        </CurrentUserContext.Provider>
+    );
+};

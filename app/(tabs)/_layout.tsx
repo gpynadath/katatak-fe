@@ -1,12 +1,12 @@
 import { AntDesign } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
-import { useContext } from "react";
-import CurrentUserContext from "app/context/UserContext";
+import { useContext, useState, useEffect } from "react";
+import { ActiveKataContext } from "../context/ActiveKata";
+import { CurrentUserContext } from "../context/UserContext";
 
 export default function TabsLayout() {
-  const currentUser = useContext(CurrentUserContext);
   return (
     <Tabs sceneContainerStyle={{ backgroundColor: "#F2F2D0" }}>
       <Tabs.Screen
@@ -38,7 +38,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="User"
         options={{
-          title: currentUser.username,
+          title: "void_cat",
           headerShown: false,
           tabBarIcon: () => <AntDesign name="user" size={24} color="black" />,
           tabBarInactiveBackgroundColor: "#D8AC5B",
@@ -56,3 +56,28 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFCD6B",
   },
 });
+
+function useFetchUser(user_id) {
+  const [user, setUser] = useState<User>();
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const loadUser = async () => {
+    setLoading(true);
+    try {
+      const loadedUser: User = await getUser(user_id);
+      setUser(loadedUser);
+      setError(null);
+    } catch (err: any) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, [user_id]);
+
+  return { user, isLoading, error };
+}
