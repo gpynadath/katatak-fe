@@ -7,9 +7,11 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
-import { useState, useEffect, SetStateAction, Dispatch } from "react";
+import { useState, useEffect, SetStateAction, Dispatch, useContext } from "react";
+import { CurrentUserContext } from "app/context/UserContext";
 import { postKata } from "../api";
 import { styles } from "./KataPageStyleSheet";
+import { SolvedThisSessionContext } from "app/context/SolvedKatas";
 import TestResult from "./TestResult";
 
 interface Output {
@@ -53,6 +55,7 @@ export default function Output({
     kata_id,
     formattedStr.trim()
   );
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   //console.log(output.logs, "<<< output.logs");
 
@@ -75,6 +78,8 @@ export default function Output({
       );
     if (error) return <Text style={styles.outcomeText}>Error...Solution </Text>; // Add indepth error handling...
     if (!output) return <Text style={styles.outcomeText}>No Output</Text>;
+
+    onOutputUpdate(output)
 
     return (
       <>
@@ -120,6 +125,10 @@ export default function Output({
   );
 }
 
+function onOutputUpdate(output  :any) {
+
+}
+
 const centerStyle = (output: Output | undefined) => {
   // test_results[x].logs[]
   let sum: number = 0;
@@ -160,16 +169,20 @@ const outputBox = StyleSheet.create({
 });
 
 function useSendInput(kata_id: number, input: string) {
+  const { solvedThisSession, setSolvedThisSession } = useContext(SolvedThisSessionContext);
   const [output, setOutput] = useState<Output>();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext)
 
   const sendInput = async () => {
     setLoading(true);
     try {
-      const response: Output = await postKata(kata_id, input);
+      const response: Output = await postKata(kata_id, input, currentUser);
       setOutput(response);
       setError(null);
+
+      setSolvedThisSession((a)=> a+1)
     } catch (err: any) {
       setError(err);
     } finally {

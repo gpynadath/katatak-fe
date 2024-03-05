@@ -1,7 +1,8 @@
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import KataCard from "./KataCard";
-import CurrentUserContext from "app/context/UserContext";
+import { CurrentUserContext } from "app/context/UserContext";
+import { SolvedThisSessionContext } from "app/context/SolvedKatas";
 import Loading from "../../loading-and-errors/Loading";
 import { getAllKatas, getSolutionsByUserId } from "app/api";
 import currentKata from "app/(tabs)/CurrentKata";
@@ -30,14 +31,15 @@ type solutionObj = {
 export default function KataList({ topicsValue, orderValue }: KataListProps) {
   const [kataData, setKataData] = useState<kataObj[]>([]);
   const [isLoading, setLoading] = useState(true);
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [usersSolvedKatas, setUsersSolvedKatas] = useState<number[]>([]);
+  const { solvedThisSession } = useContext(SolvedThisSessionContext);
 
   useEffect(() => {
     setLoading(true);
 
     const fetchData = async () => {
-      const allSolutions = await getSolutionsByUserId(currentUser.user_id);
+      const allSolutions = await getSolutionsByUserId(currentUser);
 
       const solvedKatasIds: number[] = [];
       allSolutions.map((solution: solutionObj) => {
@@ -57,7 +59,7 @@ export default function KataList({ topicsValue, orderValue }: KataListProps) {
       }
     };
     fetchData();
-  }, [topicsValue, orderValue]);
+  }, [topicsValue, orderValue, solvedThisSession]);
 
   if (isLoading) return <Loading />;
   return (
